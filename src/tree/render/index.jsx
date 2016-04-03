@@ -9,10 +9,16 @@ store.getGraph = () =>
     [
         {
             x: 10,
-            y: 10,
+            y: 40,
             name: 'hello',
             arc:[]
-        }
+        },
+        {
+            x: 105,
+            y: 140,
+            name: 'welcome',
+            arc:[0]
+        },
     ]
 
 ReactDOM.render(<App { ...{ store } } />, document.querySelector('#app'))

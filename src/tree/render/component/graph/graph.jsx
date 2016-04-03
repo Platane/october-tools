@@ -6,17 +6,19 @@ const Graph = ({ graph }) =>
 (
 
     <svg>
-        { graph.map( node => <Node key={node.name} {...node }/> ) }
 
         {
             graph.reduce( (arcs,A) =>
                 [
                     ...arcs,
-                    ...A.arc.map( B => <Arc key={A.name+'-'+B.name} {...{ A, B } }/>  )
+                    ...A.arc.map( b => <Arc key={A.name+'-'+graph[b].name} {...{ A, B:graph[b] } }/>  )
                 ],
                 []
             )
         }
+
+        { graph.map( node => <Node key={node.name} {...node }/> ) }
+        
     </svg>
 )
 

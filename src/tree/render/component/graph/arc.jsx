@@ -2,9 +2,7 @@ import React, {PropTypes} from 'react'
 
 const Arc = ({ A, B }) =>
 (
-    <g className="node">
-
-    </g>
+    <line x1={A.x} x2={B.x} y1={A.y} y2={B.y} stroke="#aaa" />
 )
 
 Arc.PropTypes = {
