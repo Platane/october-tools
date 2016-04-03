@@ -1,5 +1,6 @@
 import React, {PropTypes, Component} from 'react'
 import Todo from './todo.jsx'
+import OctoberTools from '../../../src/index.jsx'
 
 class App extends Component {
 
@@ -27,7 +28,12 @@ class App extends Component {
     }
 
     render() {
-        return <Todo />
+        return (
+            <div style={{ display:'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                <Todo />
+                <OctoberTools {...this.props} />
+            </div>
+        )
     }
 }
 

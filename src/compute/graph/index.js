@@ -33,7 +33,7 @@ export const step = ( graph ) =>
                 ax += x
                 ay += y
 
-
+                // order on y axis
                 const d = A.y - B.y
                 const f = 0.01 * Math.min( 100, Math.abs(d) )
                 if ( AarcB == d > 0 )

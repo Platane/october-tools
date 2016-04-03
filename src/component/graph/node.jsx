@@ -4,7 +4,7 @@ const Node = ({ x, y, name }) =>
 (
     <g className="node" transform={`translate(${x},${y})`}>
         <circle cx="0" cy="0" r="1" />
-        <text x="1" y="0.1" font-family="Verdana" font-size="5" fill="#888">{ name }</text>
+        <text x="1" y="0.1" font-family="Verdana" font-size="3" fill="#888">{ name }</text>
     </g>
 )
 

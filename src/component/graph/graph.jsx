@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react'
 import Node     from './node.jsx'
 import Arc      from './arc.jsx'
 
-const width     = window.innerWidth
+const width     = window.innerWidth * 0.6
 const height    = window.innerHeight
 const Graph = ({ graph, viewport }) =>
 (
