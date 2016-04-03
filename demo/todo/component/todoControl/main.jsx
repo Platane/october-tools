@@ -2,7 +2,7 @@ import React, {PropTypes, Component} from 'react'
 import TodoControl_ from './todoControl.jsx'
 import * as actions from '../../action'
 
-import {count} from '../../fragment'
+import {todo} from '../../fragment'
 
 
 class TodoControl extends Component {
@@ -20,7 +20,7 @@ class TodoControl extends Component {
     }
 
     componentDidMount() {
-        this.context.register( count, count => this.setState({ count }) )
+        this.context.register( todo.count, count => this.setState({ count }) )
 
     }
 

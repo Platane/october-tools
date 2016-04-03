@@ -35,10 +35,10 @@ class OctoberTools extends Component {
             this.store.graph
         this.store.getViewport = () => {
             const v = viewport( this.store.graph )
-            v.xMax += 4
-            v.yMax += 4
-            v.xMin -= 4
-            v.yMin -= 4
+            v.xMax += 20
+            v.yMax += 20
+            v.xMin -= 20
+            v.yMin -= 20
             return v
         }
 

@@ -2,7 +2,7 @@ import React, {PropTypes, Component} from 'react'
 import TodoList_ from './todoList.jsx'
 import * as actions from '../../action'
 
-import {list} from '../../fragment'
+import {todo} from '../../fragment'
 
 class TodoList extends Component {
 
@@ -18,7 +18,7 @@ class TodoList extends Component {
     }
 
     componentDidMount() {
-        this.context.register( list, todos => this.setState({ todos }) )
+        this.context.register( todo.list, todos => this.setState({ todos }) )
     }
 
     setFinish( id, finish ){

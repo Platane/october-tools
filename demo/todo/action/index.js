@@ -21,3 +21,9 @@ export const unfinishTodo = id =>
         type    : 'todo:unfinish',
         payload : { id }
     })
+
+export const setFilter = filter =>
+    ({
+        type    : 'app:filter',
+        payload : { filter }
+    })

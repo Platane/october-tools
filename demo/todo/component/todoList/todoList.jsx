@@ -6,7 +6,7 @@ const TodoList = ({ todos, remove, setFinish }) =>
     <div>
         {
             todos.map( todo =>
-                <TodoItem key={todo.id} {...todo} />
+                <TodoItem key={todo.id} {...{...todo, remove, setFinish}} />
             )
         }
     </div>
