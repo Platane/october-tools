@@ -29,8 +29,6 @@
         "babel-plugin-transform-runtime": "6.x"
     },
 
-    "main": "dist/player-bundle.js",
-
     "scripts": {
         "start"      : "./node_modules/.bin/webpack-dev-server --port 8082 --content-base ./ -d"
     }

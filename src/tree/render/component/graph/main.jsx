@@ -10,10 +10,13 @@ class Graph extends Component {
     constructor(){
         super()
 
-        this.state = { graph: [] }
+        this.state = { graph: [], viewport:{xMax:0,yMax:0,xMin:0,yMin:0}  }
 
         this.update = () =>
-            this.setState({ graph: this.context.store.getGraph() })
+            this.setState({
+                graph   : this.context.store.getGraph(),
+                viewport: this.context.store.getViewport(),
+            })
     }
 
     componentDidMount() {
