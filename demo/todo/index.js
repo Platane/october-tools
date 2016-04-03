@@ -1,4 +1,4 @@
-require('file?name=demo.html!./index.html')
+require('file?name=index.html!./index.html')
 // require('./style/main.scss')
 
 import {create}         from 'october'

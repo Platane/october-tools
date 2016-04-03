@@ -2,9 +2,8 @@
     "name": "october-tools",
     "version": "0.0.1",
 
-    "private": true,
-
     "dependencies": {
+        "october": "Platane/october",
         "react" : "15.0.0-rc.1",
         "react-dom" : "15.0.0-rc.1",
         "react-motion" : "0.4.x"
@@ -30,6 +29,6 @@
     },
 
     "scripts": {
-        "start"      : "./node_modules/.bin/webpack-dev-server --port 8082 --content-base ./ -d"
+        "start"         : "./node_modules/.bin/webpack-dev-server --port 8082 --content-base ./ -d"
     }
 }

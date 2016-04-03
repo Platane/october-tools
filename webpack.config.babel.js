@@ -9,19 +9,16 @@ const babelPlugins = [
     'transform-es2015-spread',
     'transform-object-rest-spread',
     'transform-export-extensions',
-
-    // 'transform-react-constant-elements',
-    // 'transform-react-display-name',
-    // 'transform-react-inline-elements',
-    // 'transform-react-jsx',
-    // 'transform-react-jsx-compat',
-    // 'transform-react-jsx-source',
 ]
+
+const babelPresets = process.env.NODE_ENV == 'production'
+    ? ['es2015', 'stage-1']
+    : []
 
 module.exports = {
 
     entry: {
-        'demo' : [ './demo/todo/index' ]
+        'demo' : [ './demo/todo/index' ],
     },
 
     output: {
@@ -38,7 +35,7 @@ module.exports = {
                 exclude: /(node_modules|\.tmp)/,
                 loader: 'babel',
                 query: {
-                    // presets: ['es2015', 'stage-1'],
+                    presets: babelPresets,
                     plugins: babelPlugins,
                 }
             },
@@ -48,8 +45,7 @@ module.exports = {
                 exclude: /(node_modules|\.tmp)/,
                 loader: 'babel',
                 query: {
-                    // presets: ['es2015', 'stage-1', 'react'],
-                    presets: ['react'],
+                    presets: [ ...babelPresets, 'react'],
                     plugins: babelPlugins,
                 }
             },
@@ -57,10 +53,7 @@ module.exports = {
             {
                 test: /\.html?$/,
                 exclude: /node_modules/,
-                loaders: [
-                    // 'html?attrs=script:src',
-                    // 'file?name=[hash].[ext]'
-                ],
+                loaders: [],
             },
 
             {
