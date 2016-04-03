@@ -21,7 +21,7 @@ const babelPlugins = [
 module.exports = {
 
     entry: {
-        'demo' : [ './src/index' ]
+        'demo' : [ './demo/todo/index' ]
     },
 
     output: {
