@@ -27,6 +27,7 @@ install:
 
 script:
     # deploy to gh pages
+    
     - cd ./dist
     - git init
     - git config user.name "Travis CI"
