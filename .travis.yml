@@ -23,7 +23,7 @@ install:
   - cd ../../
 
   # build, babel
-  - env NODE_ENV=production webpack
+  - webpack
 
 script:
     # deploy to gh pages

@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 
 const babelPlugins = [
     'transform-class-properties',
@@ -63,4 +64,18 @@ module.exports = {
 
         ]
     },
+
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: '"' + process.env.NODE_ENV + '"'
+            },
+        }),
+
+        ...(
+            process.env.NODE_ENV = 'production'
+                ? [ new webpack.optimize.UglifyJsPlugin({ compress: {warnings: false} }) ]
+                : []
+        )
+    ],
 }
