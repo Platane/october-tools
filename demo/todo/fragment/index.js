@@ -1,8 +1,8 @@
 
 export const todo = {
     ...require('./list'),
-    ...require('./listWithFinishState'),
     ...require('./finished'),
+    ...require('./listWithFinishState'),
     ...require('./filter'),
     ...require('./filteredList'),
 }

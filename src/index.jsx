@@ -4,12 +4,12 @@ import {EventEmitter}        from 'events'
 import {step, viewport} from './compute/graph'
 
 
-const extractGraph = fragments => {
+const extractGraph = (fragments, by_id) => {
     const graph = []
     fragments.forEach( fragment => {
         graph[ fragment.index ] = {
-            name    : fragment.path.join('.'),
-            arc     : fragment.dependencies.map( ({index}) => index ),
+            name    : fragment.id,
+            arc     : fragment.dependencies.map( id => by_id[id].index ),
             index   : fragment.index
         }
     })
@@ -19,7 +19,8 @@ const extractGraph = fragments => {
 class OctoberTools extends Component {
 
     static propsTypes = {
-        fragments      : PropTypes.object.isRequired,
+        list        : PropTypes.func.isRequired,
+        dispatch    : PropTypes.func.isRequired,
     };
 
     static childContextTypes = {
@@ -78,7 +79,7 @@ class OctoberTools extends Component {
         //             name: (i+10).toString(36)
         //         })
         //     )
-        this.store.graph = extractGraph( this.props.fragments )
+        this.store.graph = extractGraph( this.props.list(), this.props.by_id() )
             .map( (n,i,arr) =>
                 ({
                     ...n,

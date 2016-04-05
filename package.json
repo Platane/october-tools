@@ -1,6 +1,6 @@
 {
     "name": "october-tools",
-    "version": "0.0.1",
+    "version": "0.2.0",
 
     "dependencies": {
         "october": "Platane/october",
@@ -30,7 +30,6 @@
     },
 
     "scripts": {
-        "start"         : "./node_modules/.bin/webpack-dev-server --port 8082 --content-base ./ -d",
-        "build:october" : "cd ./node_modules/october; npm run build; cd ../.."
+        "start"         : "./node_modules/.bin/webpack-dev-server --port 8082 --content-base ./ -d"
     }
 }

@@ -4,26 +4,17 @@ import OctoberTools from '../../../src/index.jsx'
 
 class App extends Component {
 
-    static propsTypes = {
-        dispatch       : PropTypes.func.isRequired,
-        fragments      : PropTypes.object.isRequired,
-        getState       : PropTypes.func.isRequired,
-        register       : PropTypes.func.isRequired,
-    };
-
     static childContextTypes = {
-        dispatch       : PropTypes.func.isRequired,
-        fragments      : PropTypes.object.isRequired,
-        getState       : PropTypes.func.isRequired,
-        register       : PropTypes.func.isRequired,
+        dispatch        : PropTypes.func.isRequired,
+        register        : PropTypes.func.isRequired,
+        list            : PropTypes.func.isRequired,
     };
 
     getChildContext() {
         return {
-            dispatch       : this.props.dispatch,
-            fragments      : this.props.fragments,
-            getState       : this.props.getState,
-            register       : this.props.register,
+            dispatch        : this.props.dispatch,
+            register        : this.props.register,
+            list            : this.props.list,
         }
     }
 

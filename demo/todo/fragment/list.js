@@ -18,8 +18,9 @@ export const list = ( action, previousValue=[] ) => {
     }
 }
 list.actions = ['todo:add', 'todo:remove']
+list.defaultValue = []
 
 
-export const count = ( list ) =>
+export const count = ( list, previousValue, getValue, getPreviousValue ) =>
     list.length
 count.dependencies = [ list ]
