@@ -22,7 +22,7 @@ export const step = ( graph ) =>
 
             // contact
             const {x,y} = force( A, B, d => -200 / ( d* d ) )
-            ax += x * 3
+            ax += x
             ay += y
 
             // arc
@@ -49,7 +49,7 @@ export const step = ( graph ) =>
         const x=A.x + vx
         const y=A.y + vy
 
-        return { ...A, x, y }
+        return { ...A, x, y:A.index * 30 }
     })
 
 

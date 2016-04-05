@@ -30,16 +30,23 @@ class OctoberTools extends Component {
 
         super()
 
+        const fl = x =>
+            Math.round( x/0.1 )* 0.1
+
         this.store = new EventEmitter
+
         this.store.graph = []
+
         this.store.getGraph = () =>
             this.store.graph
+                .map( node => ({ ...node, x:fl(node.x), y:fl(node.y) }))
+
         this.store.getViewport = () => {
             const v = viewport( this.store.graph )
-            v.xMax += 20
-            v.yMax += 20
-            v.xMin -= 20
-            v.yMin -= 20
+            v.xMax = fl( v.xMax + 20 )
+            v.yMax = fl( v.yMax + 20 )
+            v.xMin = fl( v.xMin - 20 )
+            v.yMin = fl( v.yMin - 20 )
             return v
         }
 
