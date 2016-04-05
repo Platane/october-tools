@@ -10,10 +10,10 @@ const Graph = ({ graph, viewport }) =>
     <svg viewBox={`${viewport.xMin} ${viewport.yMin} ${viewport.xMax-viewport.xMin} ${viewport.yMax-viewport.yMin}`} width={width} height={height} >
 
         {
-            graph.reduce( (arcs,A) =>
+            graph.reduce( (arcs,B) =>
                 [
                     ...arcs,
-                    ...A.arc.map( b => <Arc key={A.name+'-'+graph[b].name} {...{ A, B:graph[b] } }/>  )
+                    ...B.arc.map( a => <Arc key={B.name+'-'+graph[a].name} {...{ B, A:graph[a] } }/>  )
                 ],
                 []
             )

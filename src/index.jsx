@@ -9,7 +9,8 @@ const extractGraph = fragments => {
     fragments.forEach( fragment => {
         graph[ fragment.index ] = {
             name    : fragment.path.join('.'),
-            arc     : fragment.dependencies.map( ({index}) => index )
+            arc     : fragment.dependencies.map( ({index}) => index ),
+            index   : fragment.index
         }
     })
     return graph
@@ -42,13 +43,17 @@ class OctoberTools extends Component {
             return v
         }
 
+        let i = 500
+
+
         const loop = () => {
 
             this.store.graph = step( this.store.graph )
 
             this.store.emit('change')
 
-            requestAnimationFrame( loop )
+            if ( i -- > 0 )
+                requestAnimationFrame( loop )
         }
         loop()
     }

@@ -22,7 +22,7 @@ export const step = ( graph ) =>
 
             // contact
             const {x,y} = force( A, B, d => -200 / ( d* d ) )
-            ax += x * 10
+            ax += x * 3
             ay += y
 
             // arc
