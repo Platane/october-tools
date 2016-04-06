@@ -51,7 +51,7 @@ class OctoberTools extends Component {
             return v
         }
 
-        let i = 500
+        let i = 2000
 
 
         const loop = () => {

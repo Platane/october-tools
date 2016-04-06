@@ -27,3 +27,9 @@ export const setFilter = filter =>
         type    : 'app:filter',
         payload : { filter }
     })
+
+export const removeMulti = ( ids ) =>
+    ({
+        type    : 'todo:removeMulti',
+        payload : {ids}
+    })

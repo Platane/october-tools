@@ -15,12 +15,17 @@ export const list = ( action, previousValue=[] ) => {
             value.splice(i,1)
 
             return value
+
+        case 'todo:removeMulti' :
+        {
+            const value = previousValue
+                .filter( x => !action.payload.ids.some( id => x.id == id ) )
+
+            return value.length == previousValue.length
+                ? previousValue
+                : value
+        }
     }
 }
-list.actions = ['todo:add', 'todo:remove']
+list.actions = ['todo:add', 'todo:remove', 'todo:removeMulti']
 list.defaultValue = []
-
-
-export const count = ( list, previousValue, getValue, getPreviousValue ) =>
-    list.length
-count.dependencies = [ list ]

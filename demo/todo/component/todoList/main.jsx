@@ -19,8 +19,8 @@ class TodoList extends Component {
     }
 
     componentDidMount() {
-        this.context.register( todo.list, todos => this.setState({ todos }) )
-        this.setState({ todos: this.context.getValue( todo.list ) })
+        this.context.register( todo.filteredList, todos => this.setState({ todos }) )
+        this.setState({ todos: this.context.getValue( todo.filteredList ) })
     }
 
     setFinish( id, finish ){

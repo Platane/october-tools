@@ -17,20 +17,37 @@ class TodoFooter extends Component {
     constructor(){
         super()
 
-        this.state = { count:0 }
+        this.state = { filter:0 }
     }
 
     componentDidMount() {
-        this.context.register( todo.count, count => this.setState({ count }) )
-        this.setState({ count: this.context.getValue( todo.count ) })
+        this.context.register(
+            todo.filter,
+            todo.count.finished,
+            todo.count.unfinished,
+            (filter, countFinished, countUnFinished) => this.setState({ filter, countFinished, countUnFinished })
+        )
+
+        this.setState({
+            filter          : this.context.getValue( todo.filter ),
+            countFinished   : this.context.getValue( todo.count.finished ),
+            countUnFinished : this.context.getValue( todo.count.unfinished ),
+        })
     }
 
-    add( label ){
-        this.context.dispatch( actions.addTodo( label ) )
+    setFilter( filter ){
+        this.context.dispatch( actions.setFilter( filter ) )
+    }
+
+    removeFinished( ){
+        const ids = this.context.getValue( todo.listWithFinishState )
+            .filter( x => x.finished )
+            .map( x => x.id )
+        this.context.dispatch( actions.removeMulti( ids ) )
     }
 
     render() {
-        return <TodoFooter_  {...this.state} add={ this.add.bind(this) } />
+        return <TodoFooter_  {...this.state} setFilter={ this.setFilter.bind(this) } removeFinished={ this.removeFinished.bind(this) } />
     }
 }
 

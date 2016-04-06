@@ -1,27 +1,30 @@
 import React, {PropTypes, Component} from 'react'
 
-const TodoFooter = ({ count }) =>
+const TodoFooter = ({ countFinished, countUnFinished, filter, setFilter, removeFinished }) =>
 (
     <footer className="footer">
 
         <span className="todo-count" >
-            <strong>{ count }</strong>
-            <span>{` item${ count>0 ? 's' : '' } left`}</span>
+            <strong>{ countUnFinished }</strong>
+            <span>{` item${ countUnFinished >1 ? 's' : '' } left`}</span>
         </span>
 
         <ul className="filters" >
             <li>
-                <a href="#/" className="selected">All</a>
+                <a onClick={ () => setFilter('all') } className={ filter == 'all' ? 'selected' : ''}>All</a>
             </li>
             <span> </span>
             <li>
-                <a href="#/active" className="">Active</a>
+                <a onClick={ () => setFilter('unfinished') } className={ filter == 'unfinished' ? 'selected' : ''}>Active</a>
             </li>
             <span> </span>
             <li>
-                <a href="#/completed" className="">Completed</a>
+                <a onClick={ () => setFilter('finished') } className={ filter == 'finished' ? 'selected' : ''}>Completed</a>
             </li>
         </ul>
+
+        { countFinished > 0 && <button className="clear-completed" onClick={ removeFinished }>Clear completed</button> }
+
     </footer>
 )
 

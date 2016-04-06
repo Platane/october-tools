@@ -5,4 +5,5 @@ export const todo = {
     ...require('./listWithFinishState'),
     ...require('./filter'),
     ...require('./filteredList'),
+    count:require('./count'),
 }

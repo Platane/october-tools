@@ -1,6 +1,6 @@
 import React, {PropTypes, Component} from 'react'
 import List from '../todoList/main.jsx'
-const TodoItem = ({ label }) =>
+const TodoMain = ({ label }) =>
 (
     <section className="main">
         <input className="toggle-all" type="checkbox" />
@@ -8,4 +8,4 @@ const TodoItem = ({ label }) =>
     </section>
 )
 
-export default TodoItem
+export default TodoMain
