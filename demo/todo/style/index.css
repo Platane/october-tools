@@ -25,6 +25,7 @@ button {
     padding-left: 40px;
     padding-right: 40px;
     margin-top: 200px;
+    max-width: 460px;
 
 
 	font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;

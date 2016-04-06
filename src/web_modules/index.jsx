@@ -4,6 +4,9 @@ import App  from 'component/app.jsx'
 import * as fragment    from 'fragment'
 import {create}         from 'october'
 
+
+require('../style/main.css')
+
 const extractGraph = (fragments, by_id) => {
     const graph = []
     fragments.forEach( fragment => {
@@ -28,6 +31,7 @@ class OctoberTools extends Component {
         getValue      : PropTypes.func.isRequired,
         register      : PropTypes.func.isRequired,
         unregister    : PropTypes.func.isRequired,
+        hook          : PropTypes.func.isRequired,
     };
 
     constructor(){
@@ -64,7 +68,9 @@ class OctoberTools extends Component {
 
 
         // the dispatcher
-        // ...
+        this.props.hook( (action, beforeState, afterState) =>
+            this.store.dispatch( {type:'catchAction', payload:{action, beforeState, afterState, id:Math.random().toString(36).slice(2,8)} } )
+        )
     }
 
     getChildContext() {
@@ -73,6 +79,7 @@ class OctoberTools extends Component {
             getValue      : this.store.getValue,
             register      : this.store.register,
             unregister    : this.store.unregister,
+            hook          : this.store.hook,
         }
     }
 

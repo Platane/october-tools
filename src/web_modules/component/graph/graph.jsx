@@ -2,12 +2,10 @@ import React, {PropTypes} from 'react'
 import Node     from './node.jsx'
 import Arc      from './arc.jsx'
 
-const width     = window.innerWidth * 0.6
-const height    = window.innerHeight
 const Graph = ({ graph, viewport }) =>
 (
 
-    <svg viewBox={`${viewport.xMin} ${viewport.yMin} ${viewport.xMax-viewport.xMin} ${viewport.yMax-viewport.yMin}`} width={width} height={height} >
+    <svg className="graph" viewBox={`${viewport.xMin} ${viewport.yMin} ${viewport.xMax-viewport.xMin} ${viewport.yMax-viewport.yMin}`} >
 
         {
             graph.reduce( (arcs,B) =>

@@ -1,9 +1,17 @@
-import React, {PropTypes} from 'react'
-import Graph    from './graph/main.jsx'
+import React        from 'react'
+import Graph        from './graph/main.jsx'
+import ActionList   from './actionList/main.jsx'
 
 const App = () =>
 (
-    <Graph />
+    <div className="tools">
+        <div className="tools-graph">
+            <Graph />
+        </div>
+        <div className="tools-actionList">
+            <ActionList />
+        </div>
+    </div>
 )
 
 export default App

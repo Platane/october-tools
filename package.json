@@ -14,7 +14,7 @@
         "webpack-dev-server" : "*",
         "file-loader" : "0.8.x",
         "sass-loader" : "3.x",
-        "node-sass" : "3.4.x",
+        "node-sass" : "3.x",
         "style-loader" : "0.13.x",
         "css-loader" : "0.23.x",
         "html-loader" : "0.4.x",

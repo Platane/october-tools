@@ -24,7 +24,7 @@ class App extends Component {
         return (
             <div style={{ display:'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                 <Todo />
-                <div style={{ flexShrink: 0 }} >
+                <div style={{ width: '160%'}} >
                     <OctoberTools {...this.props} />
                 </div>
             </div>

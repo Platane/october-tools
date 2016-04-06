@@ -1,8 +1,8 @@
 
 
-export const actionStack = ( action, stack ) =>
-    [ ...stack, action.payload ]
+export const list = ( action, list ) =>
+    [ ...list, action.payload ]
 
 
-actionStack.defaultValue = []
-actionStack.actions = [ 'catchAction' ]
+list.defaultValue = []
+list.actions = [ 'catchAction' ]
