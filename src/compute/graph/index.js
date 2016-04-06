@@ -34,10 +34,26 @@ export const step = ( graph ) =>
                 ay += y
 
                 // order on y axis
-                const d = A.y - B.y
-                const f = 0.01 * Math.min( 100, Math.abs(d) )
-                if ( AarcB == d > 0 )
-                    ay += f * ( AarcB ? 1 : -1 )
+                if ( AarcB ) {
+
+                    // A should be at least 10 unit greater than B on the y axis
+
+                    // should be 10 or more
+                    let d = A.y - B.y
+
+                    if( d < 10 )
+                        ay += Math.min( 0.1 * ( 10 - d ), 100 )
+                }
+                if ( BarcA ){
+
+                    // A should be at least 10 unit lower than B on the y axis
+
+                    // should be 10 or more
+                    let d = B.y - A.y
+
+                    if( d < 10 )
+                        ay += Math.min( 0.1 * ( d - 10 ), 100 )
+                }
             }
 
 
@@ -49,7 +65,8 @@ export const step = ( graph ) =>
         const x=A.x + vx
         const y=A.y + vy
 
-        return { ...A, x, y:A.index * 30 }
+        // return { ...A, x, y:A.index * 30 }
+        return { ...A, x, y }
     })
 
 
