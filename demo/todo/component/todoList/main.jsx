@@ -8,17 +8,19 @@ class TodoList extends Component {
 
     static contextTypes = {
         register       : PropTypes.func,
+        dispatch       : PropTypes.func,
+        getValue       : PropTypes.func,
     };
 
     constructor(){
         super()
 
         this.state = { todos:[]  }
-
     }
 
     componentDidMount() {
         this.context.register( todo.list, todos => this.setState({ todos }) )
+        this.setState({ todos: this.context.getValue( todo.list ) })
     }
 
     setFinish( id, finish ){

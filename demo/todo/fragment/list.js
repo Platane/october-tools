@@ -11,7 +11,7 @@ export const list = ( action, previousValue=[] ) => {
             if ( i==-1 )
                 return previousValue
 
-            const value = previousValue.splice()
+            const value = previousValue.slice()
             value.splice(i,1)
 
             return value
@@ -22,5 +22,5 @@ list.defaultValue = []
 
 
 export const count = ( list, previousValue, getValue, getPreviousValue ) =>
-    console.log( list ) || list.length
+    list.length
 count.dependencies = [ list ]
