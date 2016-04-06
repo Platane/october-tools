@@ -3,13 +3,13 @@ import TodoItem from './todoItem.jsx'
 
 const TodoList = ({ todos, remove, setFinish }) =>
 (
-    <div>
+    <ul className="todo-list">
         {
             todos.map( todo =>
                 <TodoItem key={todo.id} {...{...todo, remove, setFinish}} />
             )
         }
-    </div>
+    </ul>
 )
 
 export default TodoList

@@ -1,5 +1,5 @@
 require('file?name=index.html!./index.html')
-// require('./style/main.scss')
+require('./style/index.css')
 
 import {create}         from 'october'
 import ReactDOM         from 'react-dom'

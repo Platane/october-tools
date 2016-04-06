@@ -22,5 +22,5 @@ list.defaultValue = []
 
 
 export const count = ( list, previousValue, getValue, getPreviousValue ) =>
-    list.length
+    console.log( list ) || list.length
 count.dependencies = [ list ]

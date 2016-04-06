@@ -62,6 +62,11 @@ module.exports = {
                 loader: 'style!css!sass'
             },
 
+            {
+                test: /\.css$/,
+                loader: 'style!css'
+            },
+
         ]
     },
 

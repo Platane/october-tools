@@ -1,12 +1,16 @@
 import React, {PropTypes, Component} from 'react'
-import TodoList     from './todoList/main.jsx'
-import TodoControl  from './todoControl/main.jsx'
+import TodoMain     from './todoMain/main.jsx'
+import TodoFooter   from './todoFooter/main.jsx'
+import TodoHeader   from './todoHeader/main.jsx'
 
 const Todo = () =>
 (
-    <div>
-        <TodoList />
-        <TodoControl />
+    <div id="todo">
+        <section className="todoapp">
+            <TodoHeader />
+            <TodoMain />
+            <TodoFooter />
+        </section>
     </div>
 )
 
