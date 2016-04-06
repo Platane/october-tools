@@ -1,6 +1,6 @@
 import React, {PropTypes, Component} from 'react'
 import Todo from './todo.jsx'
-import OctoberTools from '../../../src/index.jsx'
+import OctoberTools from '../../../src/web_modules/index.jsx'
 
 class App extends Component {
 
