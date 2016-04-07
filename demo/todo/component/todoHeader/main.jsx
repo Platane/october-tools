@@ -10,7 +10,7 @@ class TodoControl extends Component {
     };
 
     add( label ){
-        this.context.dispatch( actions.addTodo( label ) )
+        label && this.context.dispatch( actions.addTodo( label ) )
     }
 
     render() {
