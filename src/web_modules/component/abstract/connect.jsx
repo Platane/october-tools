@@ -1,7 +1,7 @@
 import React, {PropTypes, Component} from 'react'
 import * as root    from 'fragment'
 
-export const connect = ( getDependencies, getState, C ) => {
+export const connect = ( getDependencies, getState, methods, C ) => {
 
     const dep = getDependencies( root )
 
@@ -24,8 +24,16 @@ export const connect = ( getDependencies, getState, C ) => {
         }
 
         componentDidMount() {
+
             this._mounted=true
+
             this.context.register( ...dep, this._update )
+
+            this._methods = {}
+            for ( let key in methods )
+                this._methods[ key ] = methods[ key ].bind( null, this.context.dispatch, this.context.getValue )
+
+
             this._update( ...dep.map( fragment => this.context.getValue( fragment ) ) )
         }
 
@@ -37,7 +45,7 @@ export const connect = ( getDependencies, getState, C ) => {
         render(){
             if ( !this._mounted )
                 return null
-            return <C {...this.state} {...this.props} />
+            return <C {...this.state} {...this._methods} />
         }
     }
 

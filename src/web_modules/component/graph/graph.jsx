@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react'
 import Node     from './node.jsx'
 import Arc      from './arc.jsx'
 
-const Graph = ({ graph, viewport }) =>
+const Graph = ({ graph, viewport,   selected, selectNode }) =>
 (
 
     <svg className="graph" viewBox={`${viewport.xMin} ${viewport.yMin} ${viewport.xMax-viewport.xMin} ${viewport.yMax-viewport.yMin}`} >
@@ -17,7 +17,7 @@ const Graph = ({ graph, viewport }) =>
             )
         }
 
-        { graph.map( node => <Node key={node.name} {...node }/> ) }
+        { graph.map( node => <Node key={node.name} {...node } selected={ selected==node.name } selectNode={ selectNode } /> ) }
 
     </svg>
 )

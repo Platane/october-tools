@@ -1,7 +1,7 @@
 import React, {PropTypes, Component} from 'react'
 import App  from 'component/app.jsx'
 
-import * as fragment    from 'fragment'
+import fragment         from 'fragment'
 import {create}         from 'october'
 
 
@@ -37,7 +37,6 @@ class OctoberTools extends Component {
     constructor(){
 
         super()
-        console.log( fragment )
         this.store = create( fragment )
 
         let i = 100

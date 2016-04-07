@@ -1,10 +1,13 @@
 import React, {PropTypes} from 'react'
 
-const Node = ({ x, y, name }) =>
+const Node = ({ x, y, name,   selected, selectNode }) =>
 (
-    <g className="node" transform={`translate(${x},${y})`}>
-        <circle cx="0" cy="0" r="0.6" />
-        <text x="1" y="0.1" font-family="Verdana" font-size="3" fill="#888">{ name }</text>
+    <g class={'node' + ( selected ? ' node--selected' : '' ) }
+        transform={`translate(${x},${y})`}
+        onClick={ () => selectNode( name ) }
+        >
+        <circle cx="0" cy="0" r="1" />
+        <text x="1" y="0.1" font-family="Verdana" font-size="2.5" fill="#888">{ name }</text>
     </g>
 )
 
