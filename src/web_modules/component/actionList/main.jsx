@@ -1,39 +1,20 @@
-import React, {PropTypes, Component} from 'react'
-import ActionList_      from './actionList.jsx'
-import * as frag        from 'fragment'
+import ActionList      from './actionList.jsx'
+import {connect}    from 'component/abstract/connect.jsx'
 
-class ActionList extends Component {
+export default connect(
 
-    static contextTypes = {
-        register       : PropTypes.func.isRequired,
-        getValue       : PropTypes.func.isRequired,
-        dispatch       : PropTypes.func.isRequired,
-    };
+    root => [ root.action.list, root.actionSelected.selectedId ]
+    ,
 
-    constructor(){
-        super()
+    ( list, selectedId ) =>
+        ({ list, selectedId })
+    ,
 
-        this.state = { list: []  }
-
-        this.update = ( list, selectedId ) =>
-            this.setState({ list, selectedId })
+    {
+        selectAction : ( dispatch, getAction, id ) =>
+            dispatch( {type:'action:select', payload:{ id }} )
     }
+    ,
 
-    componentDidMount() {
-        this.context.register( frag.action.list, frag.actionSelected.selectedId, this.update )
-        this.update(
-            this.context.getValue( frag.action.list ),
-            this.context.getValue( frag.actionSelected.selectedId )
-        )
-    }
-
-    selectAction( id ) {
-        this.context.dispatch( {type:'action:select', payload:{ id }} )
-    }
-
-    render() {
-        return <ActionList_  {...this.state} selectAction={ this.selectAction.bind( this ) } />
-    }
-}
-
-export default ActionList
+    ActionList
+)

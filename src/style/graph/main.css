@@ -1,12 +1,22 @@
 .graph{
     width:100%;
     height:100%;
+
+    cursor:default;
+
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
-.node>circle{
+.node{
+    cursor:pointer;
+}
+.node-tic{
     transition: transform 200ms ease, fill 200ms ease;
 }
-.node--selected>circle{
+.node--selected > .node-tic{
     fill: #5bbd47;
     transform: scale(2);
 }

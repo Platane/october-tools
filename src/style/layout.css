@@ -5,8 +5,21 @@
     width:100%;
     height:100%;
 }
+.tools-right{
+    width:100%;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
 .tools-graph{
     width:100%;
+    height:80%;
+}
+.tools-fragmentDiff{
+    width:100%;
+    height:20%;
+    min-height: 160px;
 }
 .tools-actionList{
     width:38%;

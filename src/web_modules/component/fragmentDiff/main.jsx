@@ -1,13 +1,16 @@
 import FragmentDiff     from './fragmentDiff.jsx'
-import connect          from 'component/abstract/connect.jsx'
+import {connect}        from 'component/abstract/connect.jsx'
 
 export default connect(
 
-    root => [ root.fragmentSelected.onCurrentAction, root.fragmentSelected.selected ]
+    root => [ root.nodeSelected.onCurrentAction, root.nodeSelected.selected ]
     ,
 
-    ( diff, fragmentId ) =>
-        ({ diff, fragmentId })
+    ( diff, nodeName ) =>
+        ({ diff, nodeName })
+    ,
+
+    {}
     ,
 
     FragmentDiff

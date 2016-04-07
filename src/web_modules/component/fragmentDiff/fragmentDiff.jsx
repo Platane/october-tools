@@ -1,16 +1,16 @@
 import React, {PropTypes} from 'react'
 
-const FragmentDiff = ({ diff, fragmentId }) =>
+const FragmentDiff = ({ diff, nodeName }) =>
 (
 
     <div className="fragmentDiff">
-        { fragmentId }
+        <div className="fragmentDiff-name">{ nodeName }</div>
     </div>
 
 )
 
 FragmentDiff.PropTypes = {
-    fragmentId : PropTypes.string.isRequired,
+    nodeName : PropTypes.string.isRequired,
 }
 
 export default FragmentDiff
