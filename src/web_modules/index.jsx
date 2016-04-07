@@ -40,11 +40,14 @@ class OctoberTools extends Component {
 
         this.store = create( fragment )
 
+        let i = 100
+
         this._graphLoop = () => {
 
             this.store.dispatch( {type:'graph:step'} )
 
-            requestAnimationFrame( this._graphLoop )
+            if ( i-- > 0 )
+                requestAnimationFrame( this._graphLoop )
         }
     }
 

@@ -1,0 +1,10 @@
+@import "objectTree/main.css";
+
+.action {
+    padding: 10px;
+    border-top: 1px solid #eee;
+}
+.action-type {
+    font-weight: bold;
+    font-size: 1.2em;
+}

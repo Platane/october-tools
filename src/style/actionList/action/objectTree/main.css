@@ -1,0 +1,40 @@
+.objectTree-identity{
+    display: flex;
+    flex-direction: row;
+}
+.objectTree-children{
+    margin-left: 16px;
+}
+.objectTree-child{
+    display: flex;
+    flex-direction: column;
+}
+.objectTree-child--leaf{
+    flex-direction: row;
+}
+
+
+.objectTree-key{
+    font-weight: bold;
+}
+.objectTree-leaf{
+    color: #555;
+}
+.objectTree-tic{
+    transition: transform 150ms ease;
+    margin-right: 5px;
+    width: 3px;
+}
+.objectTree-tic--opened{
+    transform: rotate(90deg);
+}
+
+.objectTree-identity{
+    cursor: pointer;
+    margin-bottom: 3px;
+    min-width: 70px;
+}
+.objectTree-child--leaf>.objectTree-identity{
+    cursor: auto;
+    margin-bottom: 0;
+}

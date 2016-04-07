@@ -2,6 +2,6 @@
 @import "graph/main.css";
 @import "layout.css";
 
-.a{
-    color: #fff;
+.tools{
+    font-family: monospace;
 }
