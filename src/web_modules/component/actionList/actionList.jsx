@@ -1,14 +1,14 @@
 import React, {PropTypes} from 'react'
 import Action      from './action.jsx'
 
-const ActionList = ({ list }) =>
+const ActionList = ({ list, selectedId,    selectAction }) =>
 (
 
     <div className="actionList">
         {
             list.map( action =>
                 <div key={action.id} className="actionList-item" >
-                    <Action {...action} />
+                    <Action {...action} selected={ selectedId == action.id } selectAction={ selectAction } />
                 </div>
             )
         }

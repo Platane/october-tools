@@ -37,7 +37,7 @@ class OctoberTools extends Component {
     constructor(){
 
         super()
-
+        console.log( fragment )
         this.store = create( fragment )
 
         let i = 100

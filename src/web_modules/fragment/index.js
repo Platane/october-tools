@@ -1,4 +1,5 @@
 module.exports = {
     graph           : require('./graph'),
-    actionStack     : require('./actionStack'),
+    action          : require('./action'),
+    actionSelected  : require('./actionSelected'),
 }

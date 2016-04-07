@@ -1,13 +1,16 @@
 import React, {PropTypes}   from 'react'
 import ObjectTree           from 'component/objectTree/main.jsx'
 
-const Action = ({ action }) =>
+const Action = ({ id, action, selected,   selectAction }) =>
 (
-    <div className="action">
+    <div className={'action'+( selected ? ' action--selected' : '')} onClick={ () => selectAction( id ) } >
+
         <div className="action-type">{ action.type }</div>
+
         <div className="action-payload">
             <ObjectTree object={ action.payload || {}  } />
         </div>
+
     </div>
 )
 
