@@ -11,17 +11,23 @@ const force = ( A, B, fn ) => {
 }
 
 
-export const step = ( graph ) =>
+export const step = ( graph, position ) => {
 
-    graph.map( (A,a) => {
+    const nPos = {}
+
+    graph.forEach( (A,a) => {
 
         let ax=0
         let ay=0
 
+        const pa = position[ A.name ]
+
         graph.forEach( (B,b) => {
 
+            const pb = position[ B.name ]
+
             // contact
-            const {x,y} = force( A, B, d => -200 / ( d* d ) )
+            const {x,y} = force( pa, pb, d => -200 / ( d* d ) )
             ax += x
             ay += y
 
@@ -29,7 +35,7 @@ export const step = ( graph ) =>
             const AarcB = A.arc.some( x => x == b )
             const BarcA = B.arc.some( x => x == a )
             if ( AarcB || BarcA ) {
-                const {x,y} = force( A, B, d => - 0.014 * ( 30 - d ) )
+                const {x,y} = force( pa, pb, d => - 0.014 * ( 30 - d ) )
                 ax += x
                 ay += y
 
@@ -39,7 +45,7 @@ export const step = ( graph ) =>
                     // A should be at least 10 unit greater than B on the y axis
 
                     // should be 10 or more
-                    let d = A.y - B.y
+                    let d = pa.y - pb.y
 
                     if( d < 10 )
                         ay += Math.min( 0.1 * ( 10 - d ), 100 )
@@ -49,7 +55,7 @@ export const step = ( graph ) =>
                     // A should be at least 10 unit lower than B on the y axis
 
                     // should be 10 or more
-                    let d = B.y - A.y
+                    let d = pb.y - pa.y
 
                     if( d < 10 )
                         ay += Math.min( 0.1 * ( d - 10 ), 100 )
@@ -62,12 +68,14 @@ export const step = ( graph ) =>
         const vx = ax
         const vy = ay
 
-        const x=A.x + vx
-        const y=A.y + vy
-
-        // return { ...A, x, y:A.index * 30 }
-        return { ...A, x, y }
+        nPos[ A.name ] = {
+            x : pa.x + vx,
+            y : pa.y + vy,
+        }
     })
+
+    return nPos
+}
 
 
 export const viewport = graph =>

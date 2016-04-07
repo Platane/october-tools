@@ -3,7 +3,7 @@ import {connect}    from 'component/abstract/connect.jsx'
 
 export default connect(
 
-    root => [ root.graph.roundedGraph, root.graph.largeViewport, root.nodeSelected.selected ]
+    root => [ root.graph.spacial.graph, root.graph.viewport.largeViewport, root.nodeSelected.selected ]
     ,
 
     ( graph, viewport, selected ) =>
