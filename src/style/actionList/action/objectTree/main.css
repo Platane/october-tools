@@ -1,9 +1,7 @@
-.objectTree-identity{
-    display: flex;
-    flex-direction: row;
-}
+@import "leaf.css";
+
 .objectTree-children{
-    margin-left: 16px;
+    margin-left: 12px;
 }
 .objectTree-child{
     display: flex;
@@ -17,12 +15,10 @@
 .objectTree-key{
     font-weight: bold;
 }
-.objectTree-leaf{
-    color: #555;
-}
 .objectTree-tic{
+    position: absolute;
+    left: -8px;
     transition: transform 150ms ease;
-    margin-right: 5px;
     width: 3px;
 }
 .objectTree-tic--opened{
@@ -30,6 +26,11 @@
 }
 
 .objectTree-identity{
+
+    display: flex;
+    flex-direction: row;
+    position: relative;
+
     cursor: pointer;
     margin-bottom: 3px;
     min-width: 70px;

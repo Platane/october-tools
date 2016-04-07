@@ -1,0 +1,16 @@
+
+.objectTree-leaf{
+    color: #333;
+}
+.objectTree-leaf--string{
+    color: #f17f06;
+}
+.objectTree-leaf--number{
+    color: #4c0fda;
+}
+.objectTree-leaf--func{
+    color: #3dd41a;
+}
+.objectTree-leaf--bool{
+    color: #333;
+}

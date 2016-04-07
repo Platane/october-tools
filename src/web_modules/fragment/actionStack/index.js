@@ -1,7 +1,7 @@
 
 
 export const list = ( action, list ) =>
-    [ ...list, action.payload ]
+    [ action.payload, ...list ]
 
 
 list.defaultValue = []
