@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react'
 import Node     from './node.jsx'
 import Arc      from './arc.jsx'
+import Flow     from './flow/main.jsx'
 
 const Graph = ({ graph, viewport,   selected, selectNode }) =>
 (
@@ -18,6 +19,8 @@ const Graph = ({ graph, viewport,   selected, selectNode }) =>
         }
 
         { graph.map( node => <Node key={node.name} {...node } selected={ selected==node.name } selectNode={ selectNode } /> ) }
+
+        <Flow />
 
     </svg>
 )
