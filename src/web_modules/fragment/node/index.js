@@ -8,6 +8,6 @@ by_id.defaultValue = {}
 
 
 export const list = ( by_id ) =>
-    Object.keys( by_id ).map( id => by_id )
+    Object.keys( by_id ).map( id => by_id[id] )
 
 list.dependencies = [ by_id ]

@@ -51,8 +51,9 @@ class OctoberTools extends Component {
 
 
         // the dispatcher
+        let i = 1
         this.props.hook( (action, beforeState, afterState) =>
-            this.store.dispatch( {type:'catchAction', payload:{action, beforeState, afterState, id:Math.random().toString(36).slice(2,8)} } )
+            this.store.dispatch( {type:'catchAction', payload:{action, beforeState, afterState, id:i++ } } )
         )
     }
 
