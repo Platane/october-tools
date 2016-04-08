@@ -7,17 +7,7 @@ import {create}         from 'october'
 
 require('../style/main.css')
 
-const extractGraph = (fragments, by_id) => {
-    const graph = []
-    fragments.forEach( fragment => {
-        graph[ fragment.index ] = {
-            name    : fragment.id,
-            arc     : fragment.dependencies.map( id => by_id[id].index ),
-            index   : fragment.index
-        }
-    })
-    return graph
-}
+
 
 class OctoberTools extends Component {
 
@@ -55,16 +45,7 @@ class OctoberTools extends Component {
 
         // the graph
 
-        const graph = extractGraph( this.props.list(), this.props.by_id() )
-            .map( (n,i,arr) =>
-                ({
-                    ...n,
-                    x:Math.cos( i/arr.length*6.28 +1 )*10,
-                    y:Math.sin( i/arr.length*6.28 +1 )*10,
-                })
-            )
-
-        this.store.dispatch( {type:'graph:init', payload:{graph} } )
+        this.store.dispatch( {type:'node:init', payload:{ node_by_id: this.props.by_id()} } )
 
         this._graphLoop()
 

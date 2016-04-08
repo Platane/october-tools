@@ -9,17 +9,12 @@ export const nodePosition = ( action, graph, position={}, getValue, getPreviousV
             return step( graph, position )
 
         default :
-        {
-            const position = {}
-            graph.forEach( (n,i,arr) =>
-                position[ n.name ] = {
+            return graph.map( (n,i,arr) =>
+                ({
                     x   : Math.cos( i/arr.length*6.28 +1 )*10,
                     y   : Math.sin( i/arr.length*6.28 +1 )*10,
-                }
+                })
             )
-
-            return position
-        }
     }
 }
 nodePosition.dependencies = [ rawGraph ]
@@ -28,10 +23,10 @@ nodePosition.actions = [ 'graph:step' ]
 
 
 export const graph = ( graph, position ) =>
-    graph.map( n =>
+    graph.map( (n, i) =>
         ({
             ...n,
-            ...position[ n.name ]
+            ...position[ i ]
         })
     )
 graph.dependencies = [ rawGraph, nodePosition ]

@@ -11,20 +11,18 @@ const force = ( A, B, fn ) => {
 }
 
 
-export const step = ( graph, position ) => {
+export const step = ( graph, position ) =>
 
-    const nPos = {}
-
-    graph.forEach( (A,a) => {
+    graph.map( (A,a) => {
 
         let ax=0
         let ay=0
 
-        const pa = position[ A.name ]
+        const pa = position[ a ]
 
         graph.forEach( (B,b) => {
 
-            const pb = position[ B.name ]
+            const pb = position[ b ]
 
             // contact
             const {x,y} = force( pa, pb, d => -200 / ( d* d ) )
@@ -68,14 +66,11 @@ export const step = ( graph, position ) => {
         const vx = ax
         const vy = ay
 
-        nPos[ A.name ] = {
+        return {
             x : pa.x + vx,
             y : pa.y + vy,
         }
     })
-
-    return nPos
-}
 
 
 export const viewport = graph =>
