@@ -16,7 +16,7 @@ class FlowAnimatetor extends Component {
 
         this.loop = ( branch ) => {
 
-            const n = ( Array.isArray( branch ) ? branch : this.props.branch ).length
+            const n = ( Array.isArray( branch ) ? branch : this.props.branch ).length +1
             const v = this.props.velocity || 0.02
 
             const k = Math.min( n, this.state.k + v )

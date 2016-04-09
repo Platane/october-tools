@@ -1,7 +1,8 @@
+let i=1
 export const addTodo = label =>
     ({
         type    : 'todo:add',
-        payload : { label, id:Math.random().toString(36).slice(2,6) }
+        payload : { label, id:i++ }
     })
 
 export const removeTodo = id =>
