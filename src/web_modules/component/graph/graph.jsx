@@ -6,7 +6,7 @@ import Flow     from './flow/main.jsx'
 const Graph = ({ graph, viewport,   selected, selectNode }) =>
 (
 
-    <svg className="graph" viewBox={`${viewport.xMin} ${viewport.yMin} ${viewport.xMax-viewport.xMin} ${viewport.yMax-viewport.yMin}`} >
+    <svg class="graph" viewBox={`${viewport.xMin} ${viewport.yMin} ${viewport.xMax-viewport.xMin} ${viewport.yMax-viewport.yMin}`} >
 
         {
             graph.reduce( (arcs,B) =>
@@ -17,10 +17,11 @@ const Graph = ({ graph, viewport,   selected, selectNode }) =>
                 []
             )
         }
+        
+        <Flow />
 
         { graph.map( node => <Node key={node.name} {...node } selected={ selected==node.name } selectNode={ selectNode } /> ) }
 
-        <Flow />
 
     </svg>
 )

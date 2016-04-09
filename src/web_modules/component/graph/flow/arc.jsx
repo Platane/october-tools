@@ -1,9 +1,9 @@
 import React, {PropTypes} from 'react'
 
-const Arc = ({ A, B, x }) =>
+const Arc = ({ A, B, k }) =>
 (
     <g>
-        <line x1={A.x} x2={  x*B.x + (1-x)*A.x } y1={A.y} y2={ x*B.y + (1-x)*A.y } stroke="red" strokeWidth="0.2" />
+        <line x1={A.x} x2={  k*B.x + (1-k)*A.x } y1={A.y} y2={ k*B.y + (1-k)*A.y } stroke="#7446a0" stroke-width="0.4" />
     </g>
 )
 
@@ -16,7 +16,7 @@ Arc.PropTypes = {
         x       : PropTypes.number.isRequired,
         y       : PropTypes.number.isRequired,
     }),
-    x       : PropTypes.number.isRequired,
+    k       : PropTypes.number.isRequired,
 }
 
 export default Arc

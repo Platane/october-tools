@@ -47,23 +47,21 @@ export const branch = ( graph, source, selectedAction ) => {
 
     // list all the branches triggered by the action
     // sorted by temporality ( branches at step[n+1] are used after the ones at step[n] )
-    const step = []
+    const branch = []
     graph
         .filter( ({name}) => change[ name ] )
         .forEach( ({index, arc}) =>
 
             arc
             .filter( i => change[ graph[i].name ] )
-            .forEach( ia => {
+            .forEach( ia =>
 
-                const n = longuestLine[ ia ]
+                branch
+                    .push({ a:ia, b:index, ka:longuestLine[ ia ], kb:longuestLine[ index ] })
 
-                ;( step[ n ] = step[ n ] || [] )
-                    .push({ a:ia, b:index })
-
-            })
+            )
         )
 
-    return step
+    return branch.sort( (a,b) => a.ka < a.kb ? 1 : -1 )
 }
 branch.dependencies = [ graph, source, selected ]

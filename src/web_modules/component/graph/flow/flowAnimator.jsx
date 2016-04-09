@@ -12,19 +12,19 @@ class FlowAnimatetor extends Component {
 
         super()
 
-        this.state={x:0}
+        this.state={k:0}
 
         this.loop = ( branch ) => {
 
             const n = ( Array.isArray( branch ) ? branch : this.props.branch ).length
             const v = this.props.velocity || 0.02
 
-            const x = Math.min( n, this.state.x + v )
+            const k = Math.min( n, this.state.k + v )
 
-            this.setState({ x })
+            this.setState({ k })
 
             window.cancelAnimationFrame( this.kill_raf )
-            if ( x < n )
+            if ( k < n )
                 this.kill_raf = window.requestAnimationFrame( this.loop )
 
         }
@@ -32,13 +32,13 @@ class FlowAnimatetor extends Component {
 
     componentWillReceiveProps(nextProps) {
         if ( this.props.branch != nextProps.branch ) {
-            this.state.x = 0
+            this.state.k = 0
             this.loop( nextProps.branch )
         }
     }
 
     componentWillMount() {
-        this.state.x = 0
+        this.state.k = 0
         this.loop()
     }
 

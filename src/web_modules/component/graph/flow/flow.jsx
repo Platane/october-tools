@@ -1,21 +1,23 @@
 import React, {PropTypes} from 'react'
 import Arc      from './arc.jsx'
 
-const Flow = ({ branch, position, x, source }) =>
+const Flow = ({ branch, position, k, source }) =>
 (
 
-    <g>
+    <g class="flow">
+
         {
-            branch.slice(0, Math.ceil( x ) )
-                .reduce( (arr, branches, k) =>
-                    [
-                        ...arr,
-                        ...branches.map( ({a, b}) =>
-                            <Arc key={ a+'-'+b } A={ position[ a ] } B={ position[ b ] } x={ x >= k+1 ? 1 : x%1 } />
-                        )
-                    ]
-                    ,
-                    []
+            source
+                .map( a =>
+                    <Arc key={ a } A={ { x:position[ a ].x, y:position[ a ].y-10}  } B={ position[ a ] } k={ Math.min( k*2, 1) } />
+                )
+        }
+
+        {
+            branch
+                .filter( ({ka}) => k-0.5 > ka  )
+                .map( ({ a, b, ka, kb }) =>
+                    <Arc key={ a+'-'+b } A={ position[ a ] } B={ position[ b ] } k={ Math.min( ( k -0.5 - ka )/( kb - ka ), 1) } />
                 )
         }
     </g>
@@ -31,7 +33,7 @@ Flow.PropTypes = {
 
     source : PropTypes.arrayOf( PropTypes.number.isRequired ).isRequired,
 
-    x    : PropTypes.number.isRequired,
+    k    : PropTypes.number.isRequired,
 
     position: PropTypes.arrayOf(
         PropTypes.shape({
