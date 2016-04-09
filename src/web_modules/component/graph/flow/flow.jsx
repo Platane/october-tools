@@ -1,7 +1,8 @@
 import React, {PropTypes} from 'react'
 import Arc      from './arc.jsx'
+import Node     from './node.jsx'
 
-const Flow = ({ branch, position, k, source }) =>
+const Flow = ({ branch, node, position, k, source }) =>
 (
 
     <g class="flow">
@@ -9,7 +10,7 @@ const Flow = ({ branch, position, k, source }) =>
         {
             source
                 .map( a =>
-                    <Arc key={ a } A={ { x:position[ a ].x, y:position[ a ].y-10}  } B={ position[ a ] } k={ Math.min( k*2, 1) } />
+                    <Arc key={ 's'+a } A={ { x:position[ a ].x, y:position[ a ].y-10}  } B={ position[ a ] } k={ Math.min( k*2, 1) } />
                 )
         }
 
@@ -18,6 +19,13 @@ const Flow = ({ branch, position, k, source }) =>
                 .filter( ({ka}) => k-0.5 > ka  )
                 .map( ({ a, b, ka, kb }) =>
                     <Arc key={ a+'-'+b } A={ position[ a ] } B={ position[ b ] } k={ Math.min( ( k -0.5 - ka )/( kb - ka ), 1) } />
+                )
+        }
+
+        {
+            node
+                .map( n =>
+                    <Node key={n.a} changed={ k-0.5 > n.k } { ...position[n.a] } />
                 )
         }
     </g>

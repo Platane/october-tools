@@ -18,5 +18,22 @@
 }
 .node--selected > .node-tic{
     fill: #5bbd47;
-    transform: scale(2);
+    transform: scale(1.5);
+}
+
+
+.flow{
+    pointer-events: none;
+}
+.flow-node > circle{
+    fill:#7446a0;
+    transform: scale(0);
+    transition: transform 200ms ease;
+}
+.flow-node-changed > circle{
+    transform: scale(1);
+}
+.flow-arc > line{
+    stroke:#7446a0;
+    stroke-width:0.5;
 }

@@ -12,12 +12,9 @@ export const source = ( nodeList, selectedAction ) =>
 
 source.dependencies = [ nodeList, selected ]
 
-
-export const branch = ( graph, source, selectedAction ) => {
+export const schedule = ( graph, source, selectedAction ) => {
 
     const change = selectedAction && selectedAction.change || {}
-
-    // for each node, the longuest path to reach the node
 
     const longuestLine = {}
     const computeLonguestLine = b =>
@@ -44,12 +41,10 @@ export const branch = ( graph, source, selectedAction ) => {
         .filter( ({name}) => change[ name ] )
         .forEach( ({index}) => computeLonguestLine( index ) )
 
-
     // list all the branches triggered by the action
     // sorted by temporality ( branches at step[n+1] are used after the ones at step[n] )
     const branch = []
     graph
-        .filter( ({name}) => change[ name ] )
         .forEach( ({index, arc}) =>
 
             arc
@@ -57,11 +52,21 @@ export const branch = ( graph, source, selectedAction ) => {
             .forEach( ia =>
 
                 branch
-                    .push({ a:ia, b:index, ka:longuestLine[ ia ], kb:longuestLine[ index ] })
+                    .push({ a:ia, b:index, ka:longuestLine[ ia ], kb:longuestLine[ index ] || longuestLine[ ia ]+1 })
 
             )
         )
 
-    return branch.sort( (a,b) => a.ka < a.kb ? 1 : -1 )
+    branch.sort( (a,b) => a.ka < a.kb ? 1 : -1 )
+
+
+
+
+    const node = graph
+        .filter( ({name}) => change[ name ] )
+        .map( ({index}) => ({ a: index, k: longuestLine[ index ] }) )
+        .sort( (a,b) => a.k < a.k ? 1 : -1 )
+
+    return { branch, node }
 }
-branch.dependencies = [ graph, source, selected ]
+schedule.dependencies = [ graph, source, selected ]
