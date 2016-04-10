@@ -13,7 +13,9 @@ git:
 node_js:
   - "5"
 
-after_install:
+install:
+    - npm install
+    
     - cd ./node_modules/october
     - npm run build
     - cd ../../
