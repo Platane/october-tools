@@ -3,7 +3,7 @@ import {connect}    from 'component/abstract/connect.jsx'
 
 export default connect(
 
-    root => [ root.graph.spacial.graph, root.graph.viewport.largeViewport, root.nodeSelected.selected ]
+    root => [ root.drawableGraph.merged.graph, root.drawableGraph.boundingBox, root.nodeSelected.selected ]
     ,
 
     ( graph, viewport, selected ) =>

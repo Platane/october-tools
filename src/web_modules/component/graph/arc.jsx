@@ -12,23 +12,27 @@ const arrowHead = (A, B, l, h) => {
         'Z'
     ].join(' ')
 }
-const Arc = ({ A, B }) =>
+
+const toSvgPath = path =>
+    `M ${path[0].x} ${path[0].y}`
+    + path.slice(1).map( p => `L ${p.x} ${p.y}`).join(' ')
+
+const Arc = ({ path }) =>
 (
     <g className="arc">
-        <line x1={A.x} x2={B.x} y1={A.y} y2={B.y} />
-        <path fill="#aaa" d={ arrowHead( A, B, 3, 2 ) } />
+        <path className="arc-path" d={ toSvgPath( path ) } />
+        <path className="arc-arrow" d={ arrowHead( path[ path.length-2 ], path[ path.length-1 ], 3, 2 ) } />
+        { path.map( (p, i) => <circle key={i} cx={p.x} cy={p.y} r={0.6} fill="#aaa" /> ) }
     </g>
 )
 
 Arc.PropTypes = {
-    A   : PropTypes.shape({
-        x       : PropTypes.number.isRequired,
-        y       : PropTypes.number.isRequired,
-    }),
-    B   : PropTypes.shape({
-        x       : PropTypes.number.isRequired,
-        y       : PropTypes.number.isRequired,
-    }),
+    path : PropTypes.arrayOf(
+        PropTypes.shape({
+            x       : PropTypes.number.isRequired,
+            y       : PropTypes.number.isRequired,
+        })
+    )
 }
 
 export default Arc

@@ -5,6 +5,7 @@ sudo: false
 branches:
   only:
     - master
+    - dev
 
 git:
   depth: 1
@@ -12,29 +13,15 @@ git:
 node_js:
   - "5"
 
-install:
-   # Disable the spinner, it looks bad on Travis
-  - npm config set spin false
-  # npm install for build
-  - npm install
+after_install:
+    - cd ./node_modules/october
+    - npm run build
+    - cd ../../
 
-  - cd ./node_modules/october
-  - npm run build
-  - cd ../../
+before_script:
+    - chmod -R +x script
 
-  # build, babel
-  - webpack
+after_success:
 
-script:
-    # test
-    - npm test
-
-    # deploy to gh pages
-
-    - cd ./dist
-    - git init
-    - git config user.name "Travis CI"
-    - git config user.email "me@platane.me"
-    - git add .
-    - git commit -m "Deploy to GitHub Pages"
-    - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages > /dev/null 2>&1
+    # deploy demo
+    - test $TRAVIS_BRANCH = "master" && script/deploy-gh-pages.sh

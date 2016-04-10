@@ -7,7 +7,25 @@ by_id.defaultValue = {}
 
 
 
-export const list = ( by_id ) =>
-    Object.keys( by_id ).map( id => by_id[id] )
+export const list = ( by_id ) => {
+    const list = []
+    Object.keys( by_id ).forEach( id => list[ by_id[id].index ] = by_id[id] )
+    return list
+}
 
 list.dependencies = [ by_id ]
+
+
+const extractGraph = ( node_by_id ) => {
+    const graph = []
+    Object.keys( node_by_id ).forEach( id =>
+        graph[ node_by_id[ id ].index ] = node_by_id[ id ].next.map( id => node_by_id[id].index )
+    )
+    return graph
+}
+
+// successor graph
+export const successorGraph = ( node_by_id ) =>
+    extractGraph( node_by_id )
+
+successorGraph.dependencies = [ by_id ]

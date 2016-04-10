@@ -1,7 +1,7 @@
 module.exports = {
     node               : require('./node'),
     flow               : require('./flow'),
-    graph               : require('./graph'),
+    drawableGraph      : require('./drawableGraph'),
     action              : require('./action'),
     actionSelected      : require('./actionSelected'),
     nodeSelected        : require('./nodeSelected'),

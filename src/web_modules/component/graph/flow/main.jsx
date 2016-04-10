@@ -3,11 +3,11 @@ import {connect}    from 'component/abstract/connect.jsx'
 
 export default connect(
 
-    root => [ root.graph.spacial.nodePosition, root.flow.source, root.flow.schedule  ]
+    root => [ root.flow.withPosition.schedule, root.flow.withPosition.source  ]
     ,
 
-    ( position, source, schedule ) =>
-        ({ position, source, branch:schedule.branch, node:schedule.node })
+    ( schedule, source ) =>
+        ({ ...schedule, source })
     ,
 
     {}

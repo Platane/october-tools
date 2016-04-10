@@ -26,9 +26,13 @@
     transform: scale(1.5);
 }
 
-.arc > line{
+.arc-path {
+    fill:none;
     stroke:#aaa;
     stroke-width:0.1;
+}
+.arc-arrow {
+    fill:#aaa;
 }
 
 .flow{
@@ -42,7 +46,8 @@
 .flow-node-changed > circle{
     transform: scale(1);
 }
-.flow-arc > line{
+.flow-arc > path{
     stroke:#7446a0;
     stroke-width:0.5;
+    fill: none;
 }

@@ -4,6 +4,7 @@
 
     "dependencies": {
         "october": "Platane/october",
+        "sugiyama-graph-drawing": "Platane/sugiyama-graph-drawing#release",
         "react" : "15.x",
         "react-dom" : "15.x",
         "react-motion" : "0.4.x"
