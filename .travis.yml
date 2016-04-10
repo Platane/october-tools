@@ -26,6 +26,9 @@ install:
   - webpack
 
 script:
+    # test
+    - npm test
+
     # deploy to gh pages
 
     - cd ./dist

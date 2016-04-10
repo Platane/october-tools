@@ -1,24 +1,6 @@
-import sort                 from '../../topologicalOrdering/kahn'
-import {addDummy}           from './addDummy'
-import {changeIndex, clone} from '../../basic'
-
-
-
-// assuming the graph is topologicaly sorted
-const arcRedundancy = ( sorted_graph, A, B, X=A ) =>
-    X == B ||
-        ( B > X
-            ? false
-            : sorted_graph[X].some( X => X!=A && arcRedundancy( sorted_graph, A, B, X ) )
-        )
-
-const transitiveReduction = sorted_graph =>
-    sorted_graph.forEach( (arc, A) => {
-
-        for( let i = arc.length; i --; )
-            arcRedundancy( sorted_graph, A, arc[i] ) && arc.splice( i, 1 )
-    })
-
+import sort                  from '../../topologicalOrdering/kahn'
+import {changeIndex}         from '../../basic'
+import {transitiveReduction} from './transitiveReduction'
 
 export const layerize = graph => {
 
@@ -36,9 +18,7 @@ export const layerize = graph => {
 
     const layers = layering_fixedWidth( sorted_graph, n )
 
-    layers.map( arr => arr.map( i => _sort_index[ i ] ) )
-
-    addDummy( layers, clone( graph ) )
+    return layers.map( arr => arr.map( i => sort_index[ i ] ) )
 }
 
 

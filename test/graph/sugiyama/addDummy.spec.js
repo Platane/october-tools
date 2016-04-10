@@ -1,4 +1,4 @@
-import {addDummy} from '../../src/web_modules/compute/graph/sugiyama/layering/addDummy'
+import {addDummy} from '../../../src/web_modules/compute/graph/sugiyama/layering/addDummy'
 import expect from 'expect'
 
 describe('graph', () => {
