@@ -14,8 +14,8 @@ const arrowHead = (A, B, l, h) => {
 }
 const Arc = ({ A, B }) =>
 (
-    <g class="graph-arc">
-        <line x1={A.x} x2={B.x} y1={A.y} y2={B.y} stroke="#aaa" stroke-width="0.1" />
+    <g className="arc">
+        <line x1={A.x} x2={B.x} y1={A.y} y2={B.y} />
         <path fill="#aaa" d={ arrowHead( A, B, 3, 2 ) } />
     </g>
 )

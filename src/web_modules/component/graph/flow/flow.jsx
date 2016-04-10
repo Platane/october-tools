@@ -5,7 +5,7 @@ import Node     from './node.jsx'
 const Flow = ({ branch, node, position, k, source }) =>
 (
 
-    <g class="flow">
+    <g className="flow">
 
         {
             source

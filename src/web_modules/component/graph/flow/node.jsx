@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react'
 
 const Node = ({ x, y, changed }) =>
 (
-    <g class={'flow-node'+ ( changed ? ' flow-node-changed' : '' ) }
+    <g className={'flow-node'+ ( changed ? ' flow-node-changed' : '' ) }
         transform={`translate(${x},${y})`}
         >
 
