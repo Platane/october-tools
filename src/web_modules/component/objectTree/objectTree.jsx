@@ -3,7 +3,7 @@ import Leaf         from './leaf.jsx'
 
 
 const ObjectTree = ({ x , open, close }) =>
-    typeof x != 'object'
+    x === null || typeof x != 'object'
         ? <Leaf x={x} />
         : (
 

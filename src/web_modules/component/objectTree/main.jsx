@@ -7,7 +7,7 @@ const decorateObject = ( x, opened, path = [] ) => {
     if ( Array.isArray( x ) )
         x = x.reduce( (o, value, i) => ({ ...o, [ `[${i}]`]: value })  , {} )
 
-    if ( typeof x != 'object' )
+    if ( x === null || typeof x != 'object' )
         return x
 
     return Object.keys( x )
