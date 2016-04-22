@@ -5,6 +5,12 @@ export const addTodo = label =>
         payload : { label, id:i++ }
     })
 
+export const renameTodo = ( id, label ) =>
+    ({
+        type    : 'todo:rename',
+        payload : { id, label }
+    })
+
 export const removeTodo = id =>
     ({
         type    : 'todo:remove',

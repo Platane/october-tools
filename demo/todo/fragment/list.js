@@ -6,6 +6,7 @@ export const list = ( action, previousValue=[] ) => {
             return [ ...previousValue, action.payload ]
 
         case 'todo:remove' :
+        {
             const i = previousValue.findIndex( ({id}) => id == action.payload.id )
 
             if ( i==-1 )
@@ -15,6 +16,21 @@ export const list = ( action, previousValue=[] ) => {
             value.splice(i,1)
 
             return value
+        }
+
+        case 'todo:rename' :
+        {
+            if( !value[ i ] || value[ i ].label == action.payload.label )
+                return previousValue
+
+            const value = previousValue.slice()
+
+            const i = value.findIndex( x => x.id == action.payload.id )
+
+            value[ i ] = { ...value[ i ], label: action.payload.label }
+
+            return value
+        }
 
         case 'todo:removeMulti' :
         {
