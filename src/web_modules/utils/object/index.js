@@ -1,4 +1,4 @@
-// { A:{ B: 17 } } => { A.B:17 }
+// { A:{ B: 17 } } => { A.B: 17 }
 export const shortenPath = ( A, path=[] ) => {
     if ( !A || typeof A != 'object' )
         return path.length==0
@@ -24,22 +24,46 @@ export const shortenPath = ( A, path=[] ) => {
     }
 }
 
-// { A.B:17 } => { A:{ B: 17 } }
-export const enlargePath = A =>
+// { A:{ B: 17 } } => { A.B: 17 }
+export const flatten = (A, path=[]) =>
     !A || typeof A != 'object'
-        ? A
+        ? (
+            path.length==0
+                ? A
+                : { [path.join('.')]: A }
+        )
         : Object.keys( A )
-            .reduce( (o,key) => {
+            .reduce( (o, key) =>
+                ({...o, ...flatten( A[key], [...path, key] ) })
+            ,{})
 
-                const [head, ...tail] = key.split('.')
+// { A.B: 17 } => { A:{ B: 17 } }
+export const nest = A => {
 
-                o[ head ] = tail.length==0
-                    ? A[key]
-                    : { ...( o[ head ] || {} ), ...enlargePath( { [tail.join('.')]: A[key] } ) }
+    if ( !A || typeof A != 'object' )
+        return A
 
-                return o
+    const flat = flatten( A )
 
-            }, {} )
+    const keys = Object.keys( flat )
+
+    const res = {}
+
+    while( keys.length ){
+        const key = keys.shift()
+        const path = key.split('.')
+
+        let x=res
+        while( path.length > 1 ){
+            const l=path.shift()
+            x = ( x[l] = x[l] || {} )
+        }
+
+        x[ path[0] ] = flat[ key ]
+    }
+
+    return res
+}
 
 
 const diffObject = ( A, B ) => {
