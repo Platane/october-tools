@@ -41,6 +41,9 @@ describe('object utils', () => {
         it('with null nested inside object', () =>{
             expect( o.enlargePath( { 'A.B':null } ) ).toEqual( { A:{ B: null } } )
         })
+        it('with object which require merge', () =>{
+            expect( o.enlargePath( { 'A.B':17,'A.C':18, } ) ).toEqual( { A:{ B: 17, C: 18 } } )
+        })
 
     })
 

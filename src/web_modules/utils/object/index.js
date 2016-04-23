@@ -35,7 +35,7 @@ export const enlargePath = A =>
 
                 o[ head ] = tail.length==0
                     ? A[key]
-                    : enlargePath( { [tail.join('.')]: A[key] } )
+                    : { ...( o[ head ] || {} ), ...enlargePath( { [tail.join('.')]: A[key] } ) }
 
                 return o
 
