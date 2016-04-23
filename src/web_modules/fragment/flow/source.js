@@ -1,5 +1,5 @@
 import * as node   from 'fragment/node'
-import {selected}  from 'fragment/actionSelected'
+import {action}  from 'fragment/actionSelected'
 
 
 export const source = ( nodeList, selectedAction ) =>
@@ -9,4 +9,4 @@ export const source = ( nodeList, selectedAction ) =>
             .filter( ({ actions }) => actions.some( x => x == selectedAction.action.type ) )
             .map( ({index}) => index )
 
-source.dependencies = [ node.list, selected ]
+source.dependencies = [ node.list, action ]

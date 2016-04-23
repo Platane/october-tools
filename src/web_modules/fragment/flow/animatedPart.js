@@ -1,6 +1,6 @@
 import * as node   from 'fragment/node'
 import {pathGraph, position}    from 'fragment/drawableGraph'
-import {selected}               from 'fragment/actionSelected'
+import {change}                 from 'fragment/actionSelected'
 import {source}                 from './source'
 
 /**
@@ -38,10 +38,10 @@ const longuestLine = ( source, graph, filter ) => {
 }
 
 
-export const schedule = ( graph, source, selectedAction, node_by_id, pathGraph ) => {
+export const schedule = ( graph, source, _change, node_by_id, pathGraph ) => {
 
     const change = []
-    Object.keys( selectedAction && selectedAction.change || {} )
+    Object.keys( _change )
         .forEach( id => change[ node_by_id[ id ].index ] = true )
 
     const l = longuestLine( source, graph, change )
@@ -79,4 +79,4 @@ export const schedule = ( graph, source, selectedAction, node_by_id, pathGraph )
 
     return { branch, node }
 }
-schedule.dependencies = [ node.successorGraph, source, selected , node.by_id, pathGraph ]
+schedule.dependencies = [ node.successorGraph, source, change , node.by_id, pathGraph ]

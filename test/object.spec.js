@@ -19,7 +19,7 @@ describe('object utils', () => {
             expect( o.flatten( [[[17]]] ) ).toEqual( { '0.0.0':17 } )
         })
         it('with null nested inside object', () =>{
-            expect( o.flatten( { A:{ B: null } } ) ).toEqual( { 'A.B':null } )
+            expect( o.flatten( { A:{ B: { C: null, D:13 } } } ) ).toEqual( { 'A.B.C':null, 'A.B.D':13 } )
         })
 
     })

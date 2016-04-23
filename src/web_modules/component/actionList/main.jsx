@@ -3,7 +3,7 @@ import {connect}    from 'component/abstract/connect.jsx'
 
 export default connect(
 
-    root => [ root.action.list, root.actionSelected.selectedId ]
+    root => [ root.action.list, root.actionSelected.id ]
     ,
 
     ( list, selectedId ) =>

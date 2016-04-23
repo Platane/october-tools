@@ -3,11 +3,11 @@ import {connect}        from 'component/abstract/connect.jsx'
 
 export default connect(
 
-    root => [ root.nodeSelected.onCurrentAction, root.nodeSelected.selected ]
+    root => [ root.actionSelected.diff ]
     ,
 
-    ( diff, nodeName ) =>
-        ({ diff, nodeName })
+    ( diff ) =>
+        ({ diff })
     ,
 
     {}
