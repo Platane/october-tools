@@ -24,28 +24,57 @@ describe('object utils', () => {
 
     })
 
-    // describe('shortenPath', () =>{
-    //
-    //     it('with null', () =>{
-    //         expect( o.shortenPath( null ) ).toEqual( null )
-    //     })
-    //     it('with primitive', () =>{
-    //         expect( o.shortenPath( 17 ) ).toEqual( 17 )
-    //     })
-    //     it('with object', () =>{
-    //         expect( o.shortenPath( { A:{ B: 17 } } ) ).toEqual( { 'A.B':17 } )
-    //     })
-    //     it('with array', () =>{
-    //         expect( o.shortenPath( [[[17]]] ) ).toEqual( { '0.0.0':17 } )
-    //     })
-    //     it('with null nested inside object', () =>{
-    //         expect( o.shortenPath( { A:{ B: null } } ) ).toEqual( { 'A.B':null } )
-    //     })
-    //     it('with complex object', () =>{
-    //         expect( o.shortenPath( { A:{ B: { C: 17 }, U: 24 } } ) ).toEqual( { A:{ 'B.C':17, U:24 } } )
-    //     })
-    //
-    // })
+    describe('shortenPath', () =>{
+
+        it('with null', () =>{
+            expect( o.shortenPath( null ) ).toEqual( null )
+        })
+        it('with primitive', () =>{
+            expect( o.shortenPath( 17 ) ).toEqual( 17 )
+        })
+        it('with object', () =>{
+            expect( o.shortenPath( { A:{ B: 17 } } ) ).toEqual( { 'A.B':17 } )
+        })
+        it('with array', () =>{
+            expect( o.shortenPath( [[[17]]] ) ).toEqual( { '0.0.0':17 } )
+        })
+        it('with null nested inside object', () =>{
+            expect( o.shortenPath( { A:{ B: null } } ) ).toEqual( { 'A.B':null } )
+        })
+        it('with deep nested object', () =>{
+            expect( o.shortenPath( { A:{ B: { C: { D: 5 } } } } ) ).toEqual( { 'A.B.C.D':5 } )
+        })
+        it('with complex object 3', () =>{
+            expect( o.shortenPath( { A:{ B: 13, U: 24 } } ) ).toEqual( { A:{ B:13, U:24 } } )
+        })
+        it('with complex object', () =>{
+            expect( o.shortenPath( { A:{ B: { C: 17 }, U: 24 } } ) ).toEqual( { A:{ 'B.C':17, U:24 } } )
+        })
+        it('with complex object 2', () =>{
+            const A = {
+                a : {
+                    b: {
+                        c:{
+                            d: 5
+                        }
+                    },
+                    u: {
+                        z: 7
+                    }
+                },
+                g:3
+            }
+            const B = {
+                a:{
+                    'b.c.d':5,
+                    'u.z':7,
+                },
+                g:3,
+            }
+            expect( o.shortenPath( A ) ).toEqual( B )
+        })
+
+    })
 
     describe('nest', () =>{
 

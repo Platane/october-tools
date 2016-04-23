@@ -1,27 +1,27 @@
 // { A:{ B: 17 } } => { A.B: 17 }
-export const shortenPath = ( A, path=[] ) => {
+export const shortenPath = ( A ) => {
     if ( !A || typeof A != 'object' )
-        return path.length==0
-            ? A
-            : { [path.join('.')]: A }
+        return A
 
     const keys = Object.keys( A )
-    switch( keys.length ){
-        case 0 : return null
-        case 1 : return shortenPath( A[ keys[0] ], [...path, keys[0] ] )
-        default :
-            const o = {}
-            keys
-                .forEach( key => {
+    const res = {}
 
-                    const p = shortenPath( key )
+    keys
+        .forEach( key => {
 
-                    if ( p )
-                        o[ key ] = p
-                })
 
-            return o
-    }
+            const r = shortenPath( A[ key ] )
+            
+            if ( !r || typeof r != 'object' || Object.keys(r).length > 1 )
+                res[ key ] = r
+
+            else
+                Object.keys(r)
+                    .forEach( k => res[ key+'.'+k ] = r[k] )
+
+        })
+
+    return res
 }
 
 // { A:{ B: 17 } } => { A.B: 17 }
