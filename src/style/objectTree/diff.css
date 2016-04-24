@@ -1,0 +1,13 @@
+
+.objectTree-after .objectTree-leaf{
+    color: #32c730;
+}
+.objectTree-before .objectTree-leaf{
+    color: #981c1c;
+    text-decoration: line-through;
+}
+
+.objectTree-diff{
+    display: flex;
+    flex-direction: row;
+}

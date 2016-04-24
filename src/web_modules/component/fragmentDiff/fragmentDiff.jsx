@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react'
-import ObjectTree         from 'component/objectTree/main.jsx'
+import ObjectTreeDiff         from './objectTreeDiff/main.jsx'
 
 const FragmentDiff = ({ diff }) => {
 
@@ -8,7 +8,7 @@ const FragmentDiff = ({ diff }) => {
         <div className="fragmentDiff">
 
             <div className="fragmentDiff-afterState">
-                <ObjectTree object={ diff }/>
+                <ObjectTreeDiff object={ diff }/>
             </div>
 
         </div>

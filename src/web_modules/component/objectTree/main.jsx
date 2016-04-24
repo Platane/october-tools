@@ -26,6 +26,8 @@ const decorateObject = ( x, opened, path = [] ) => {
 
 class ObjectTree extends Component {
 
+    static C = ObjectTree_;
+
     constructor(){
         super()
 
@@ -53,7 +55,9 @@ class ObjectTree extends Component {
 
         const x = decorateObject( this.props.object, this.state.opened )
 
-        return <ObjectTree_  x={x} open={ this.open.bind( this ) } close={ this.close.bind( this ) } />
+        const C = this.constructor.C
+
+        return <C  x={x} open={ this.open.bind( this ) } close={ this.close.bind( this ) } />
     }
 }
 

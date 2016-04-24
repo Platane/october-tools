@@ -1,6 +1,10 @@
 import React, {PropTypes}   from 'react'
 
 const Leaf = ({ x }) => {
+
+    if ( x === null )
+        return <div className="objectTree-leaf objectTree-leaf--null">null</div>
+
     switch( typeof x  ) {
         case 'number' :
             return <div className="objectTree-leaf objectTree-leaf--number">{ x }</div>
