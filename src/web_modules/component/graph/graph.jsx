@@ -3,10 +3,18 @@ import Node     from './node.jsx'
 import Arc      from './arc.jsx'
 import Flow     from './flow/main.jsx'
 
+const clickOnGraph = onClick =>
+    event =>
+        event.target.nodeName.toLowerCase() == 'svg'
+            && onClick()
+
 const Graph = ({ graph, viewport, position, selected,     selectNode }) =>
 (
 
-    <svg className="graph" viewBox={`${viewport.xMin} ${viewport.yMin} ${viewport.xMax-viewport.xMin} ${viewport.yMax-viewport.yMin}`} >
+    <svg
+        className="graph"
+        onClick={ clickOnGraph( () => selectNode() ) }
+        viewBox={`${viewport.xMin} ${viewport.yMin} ${viewport.xMax-viewport.xMin} ${viewport.yMax-viewport.yMin}` } >
 
         {
             graph.reduce( (list, {arc}, i) =>
