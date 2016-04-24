@@ -1,4 +1,6 @@
-import {list, state as actionState, change as actionChange, diff as diffChanged} from 'fragment/action'
+import * as _action     from 'fragment/action'
+import * as node        from 'fragment/nodeSelected'
+import {diff as computeDiff, nest, shortenPath}    from 'utils/object'
 
 export const id = ( action ) =>
     action.payload.id
@@ -8,24 +10,41 @@ id.defaultValue = null
 id.actions = [ 'action:select' ]
 
 
-export const state = ( id, state ) =>
-    state[ id ] || {}
-
-state.dependencies = [ id, actionState ]
-
-
-export const change = ( id, change ) =>
-    change[ id ] || {}
-
-change.dependencies = [ id, actionChange ]
+export const state = ( actionId, nodeId, actionList, actionState ) =>
+    nodeId
+        ? (( actionList.find( x => actionId == x.id ) || {} ).afterState || {} )[ nodeId ]
+        : actionState[ actionId ] || {}
 
 
-export const diff = ( id, diff ) =>
-    diff[ id ]
+state.dependencies = [ id, node.id, _action.list, _action.state ]
 
-diff.dependencies = [ id, diffChanged ]
 
-export const action = ( id, list ) =>
-    list.find( x => id == x.id )
+export const diff = ( actionId, nodeId, actionDiff ) => {
+    let diff = actionDiff[ actionId ]
+    const path = nodeId
+        ? nodeId.split('.')
+        : []
 
-action.dependencies = [ id, list ]
+    while( path.length ){
+        const i = path.shift()
+        typeof diff == 'object' && diff && i in diff
+            ? diff = diff[ i ]
+            : diff = null
+    }
+
+    return diff
+}
+
+diff.dependencies = [ id, node.id, _action.diff ]
+
+
+export const change = ( id, actionChange ) =>
+    actionChange[ id ] || {}
+
+change.dependencies = [ id, _action.change ]
+
+
+export const action = ( id, actionList ) =>
+    actionList.find( x => id == x.id )
+
+action.dependencies = [ id, _action.list ]

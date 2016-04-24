@@ -1,6 +1,5 @@
 
-export const selected = ( action ) =>
-    action.payload.id
+export const id = ( action ) =>
+    action.payload && action.payload.id
 
-selected.defaultValue = null
-selected.actions = [ 'node:select' ]
+id.actions = [ 'node:select' ]
