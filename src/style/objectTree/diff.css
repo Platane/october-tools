@@ -1,8 +1,10 @@
 
-.objectTree-after .objectTree-leaf{
+.objectTree-after .objectTree-leaf,
+.objectTree-after .objectTree-identity{
     color: #32c730;
 }
-.objectTree-before .objectTree-leaf{
+.objectTree-before .objectTree-leaf,
+.objectTree-before .objectTree-identity{
     color: #981c1c;
     text-decoration: line-through;
 }
@@ -10,4 +12,5 @@
 .objectTree-diff{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }

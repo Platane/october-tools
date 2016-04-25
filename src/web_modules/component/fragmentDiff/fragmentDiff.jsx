@@ -8,7 +8,11 @@ const FragmentDiff = ({ diff }) => {
         <div className="fragmentDiff">
 
             <div className="fragmentDiff-afterState">
-                <ObjectTreeDiff object={ diff }/>
+                {
+                    diff
+                        ? <ObjectTreeDiff object={ diff }/>
+                        : <div className="objectTree-diff">no change</div>
+                }
             </div>
 
         </div>

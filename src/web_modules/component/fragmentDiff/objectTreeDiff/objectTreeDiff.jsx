@@ -10,6 +10,9 @@ const ObjectTreeDiff = ({ x , open,   close }) => {
     if ( isLeaf( x ) )
         return <Leaf x={x} />
 
+    if ( isLeaf( x ) )
+        return <Leaf x={x} />
+
     else if ( x.some( x => x.key == 'before' ) && x.some( x => x.key == 'after' ) )
         return (
             <div className="objectTree-diff">
@@ -40,7 +43,7 @@ const ObjectTreeDiff = ({ x , open,   close }) => {
 
                             </div>
 
-                            { isLeaf( value ) || opened && <ObjectTreeDiff x={value} { ...{open, close} } /> }
+                            { ( isLeaf( value ) || opened ) && <ObjectTreeDiff x={value} { ...{open, close} } /> }
 
                         </div>
 
