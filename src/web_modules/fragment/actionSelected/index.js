@@ -2,12 +2,12 @@ import * as _action     from 'fragment/action'
 import * as node        from 'fragment/nodeSelected'
 import {diff as computeDiff, nest, shortenPath}    from 'utils/object'
 
-export const id = ( action ) =>
-    action.payload.id
+export const id = ( action, id ) =>
+    action.type == 'action:select'
+        ? action.payload.id
+        : id
 
-
-id.defaultValue = null
-id.actions = [ 'action:select' ]
+id.source = true
 
 
 export const state = ( actionId, nodeId, actionList, actionState ) =>

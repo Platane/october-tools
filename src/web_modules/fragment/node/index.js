@@ -1,10 +1,10 @@
 
-export const by_id = ( action ) =>
-    action.payload.node_by_id
+export const by_id = ( action, by_id = {} ) =>
+    action.type == 'node:init'
+        ? action.payload.node_by_id
+        : by_id
 
-by_id.actions = [ 'node:init' ]
-by_id.defaultValue = {}
-
+by_id.source = true
 
 
 export const list = ( by_id ) => {

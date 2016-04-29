@@ -9,4 +9,4 @@ export const filter = ( action, previousValue='all' ) => {
             return previousValue
     }
 }
-filter.actions = ['app:filter']
+filter.source = true

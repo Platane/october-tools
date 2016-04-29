@@ -41,7 +41,9 @@ export const list = ( action, previousValue=[] ) => {
                 ? previousValue
                 : value
         }
+
+        default :
+            return previousValue
     }
 }
-list.actions = ['todo:add', 'todo:remove', 'todo:removeMulti']
-list.defaultValue = []
+list.source = true

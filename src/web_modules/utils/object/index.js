@@ -11,7 +11,7 @@ export const shortenPath = ( A ) => {
 
 
             const r = shortenPath( A[ key ] )
-            
+
             if ( !r || typeof r != 'object' || Object.keys(r).length > 1 )
                 res[ key ] = r
 

@@ -1,8 +1,8 @@
 
 
-export const list = ( action, list ) =>
-    [ action.payload, ...list ]
+export const list = ( action, list = [] ) =>
+    action.type == 'catchAction'
+        ? [ action.payload, ...list ]
+        : list
 
-
-list.defaultValue = []
-list.actions = [ 'catchAction' ]
+list.source = true

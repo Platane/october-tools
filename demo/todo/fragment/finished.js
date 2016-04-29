@@ -1,6 +1,6 @@
 import {list} from './list'
 
-export const finished = ( action, list, previousValue={} ) => {
+export const finished = ( action, previousValue={} ) => {
 
     switch( action.type ) {
         case 'todo:finish' :
@@ -16,5 +16,4 @@ export const finished = ( action, list, previousValue={} ) => {
             return previousValue
     }
 }
-finished.actions = ['todo:finish', 'todo:unfinish']
-finished.dependencies = [ list ]
+finished.source = true

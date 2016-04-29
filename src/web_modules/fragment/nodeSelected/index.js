@@ -1,5 +1,7 @@
 
-export const id = ( action ) =>
-    action.payload && action.payload.id
+export const id = ( action, id ) =>
+    action.type == 'node:select'
+        ? action.payload.id
+        : id
 
-id.actions = [ 'node:select' ]
+id.source = true

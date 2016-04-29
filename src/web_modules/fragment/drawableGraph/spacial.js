@@ -5,7 +5,7 @@ const r = graph =>
     computePosition( graph )
 r.dependencies = [ node.successorGraph ]
 
-export const position = ( action, r, position ) => {
+export const position = ( action, r, position = [] ) => {
 
     switch( action.type ){
 
@@ -18,7 +18,7 @@ export const position = ( action, r, position ) => {
     }
 }
 position.dependencies = [ r ]
-position.actions = [ 'graph:step' ]
+position.source = true
 
 
 export const graphWithDummy = r =>
