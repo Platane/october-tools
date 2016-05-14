@@ -3,11 +3,16 @@ import {connect}    from 'component/abstract/connect.jsx'
 
 export default connect(
 
-    root => [ root.drawableGraph.merged.graph, root.drawableGraph.boundingBox, root.nodeSelected.id ]
+    root => [ root.drawableGraph.graph, root.drawableGraph.boundingBox, root.nodeSelected.id ]
     ,
 
     ( graph, viewport, selected ) =>
-        ({ graph, viewport, selected })
+        ({
+            nodes   : graph.vertices,
+            arcs    : [].concat( ...graph.edges.map( x => x.map( x => x.points ) ) ),
+            viewport,
+            selected
+        })
     ,
 
     {

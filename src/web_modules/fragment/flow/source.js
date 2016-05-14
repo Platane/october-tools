@@ -1,12 +1,12 @@
 import * as node   from 'fragment/node'
-import {action}  from 'fragment/actionSelected'
+import {action, change}  from 'fragment/actionSelected'
 
 
-export const source = ( nodeList, selectedAction ) =>
+export const source = ( nodeList, selectedAction, change ) =>
     !selectedAction
         ? []
         : nodeList
-            .filter( ({ source }) => source )
+            .filter( ({ source, id }) => source && change[id]  )
             .map( ({index}) => index )
 
-source.dependencies = [ node.list, action ]
+source.dependencies = [ node.list, action, change ]

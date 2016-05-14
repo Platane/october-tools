@@ -1,6 +1,8 @@
 import React, {PropTypes, Component} from 'react'
 import Flow     from './flow.jsx'
 
+let u = 0
+
 class FlowAnimatetor extends Component {
 
     static propsTypes = {
@@ -16,10 +18,14 @@ class FlowAnimatetor extends Component {
 
         this.loop = ( branch ) => {
 
-            const n = ( Array.isArray( branch ) ? branch : this.props.branch ).length +1
-            const v = this.props.velocity || 0.04
+            const n = ( Array.isArray( branch ) ? branch : this.props.branch ).reduce( (max,x) => Math.max( max, x.kb ), 0 ) +1
+            const v = 'velocity' in this.props
+                ? this.props.velocity
+                : 'duration' in this.props
+                    ? n/ this.props.duration
+                    : 1
 
-            const k = Math.min( n, this.state.k + v )
+            const k = Math.min( n, this.state.k + v*16 )
 
             this.setState({ k })
 

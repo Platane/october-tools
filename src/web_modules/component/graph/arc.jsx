@@ -22,7 +22,7 @@ const Arc = ({ path }) =>
     <g className="arc">
         <path className="arc-path" d={ toSvgPath( path ) } />
         <path className="arc-arrow" d={ arrowHead( path[ path.length-2 ], path[ path.length-1 ], 3, 2 ) } />
-        { path.map( (p, i) => <circle key={i} cx={p.x} cy={p.y} r={0.6} fill="#aaa" /> ) }
+        { path.map( (p, i) => <circle key={i} cx={p.x} cy={p.y} r={0.5} fill="#aaa" /> ) }
     </g>
 )
 

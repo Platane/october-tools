@@ -7,20 +7,6 @@ const Flow = ({ branch, node, position, k, source }) =>
 
     <g className="flow">
 
-        {
-            source
-                .map( (A,i) =>
-                    <Arc key={ 's'+i } k={Math.min( k*2, 1) } path={[ {x:A.x, y:A.y- 10}, A ] } />
-                )
-        }
-
-        {
-            branch
-                .filter( ({ka}) => k-0.5 > ka  )
-                .map( ({ B, A, ka, kb, path }) =>
-                    <Arc key={ A+'-'+B } path={path} k={ Math.min( ( k -0.5 - ka )/( kb - ka ), 1) } />
-                )
-        }
 
         {
             node
@@ -28,8 +14,23 @@ const Flow = ({ branch, node, position, k, source }) =>
                     <Node key={i} changed={ k-0.5 > A.k } { ...A } />
                 )
         }
+
+        {
+            branch
+                .filter( ({ka}) => k-0.5 > ka  )
+                .map( ({ka, kb, points }, i) =>
+                    <Arc key={ i } path={points} k={ Math.min( ( k -0.5 - ka )/( kb - ka ), 1) } />
+            )
+        }
     </g>
 )
+// {
+//     source
+//         .map( (A,i) =>
+//             <Arc key={ 's'+i } k={Math.min( k*2, 1) } path={[ {x:A.x, y:A.y- 10}, A ] } />
+//         )
+// }
+//
 
 // Flow.PropTypes = {
 //     branch : PropTypes.arrayOf(

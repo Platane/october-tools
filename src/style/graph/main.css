@@ -23,7 +23,7 @@
 }
 .node--selected > .node-tic{
     fill: #5bbd47;
-    transform: scale(1.5);
+    transform: scale(2.5);
 }
 
 .arc-path {

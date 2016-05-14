@@ -18,6 +18,7 @@ export const connect = ( getDependencies, getState, methods, C ) => {
             super()
 
             this.state = {}
+            this._methods = {}
 
             this._update = ( ...args ) =>
                 this.setState( getState( ...args ) )
@@ -26,6 +27,7 @@ export const connect = ( getDependencies, getState, methods, C ) => {
         componentDidMount() {
 
             this._mounted=true
+            this._renderedOnce=false
 
             this.context.register( ...dep, this._update )
 
@@ -45,7 +47,8 @@ export const connect = ( getDependencies, getState, methods, C ) => {
         render(){
             if ( !this._mounted )
                 return null
-            return <C {...this.state} {...this._methods} />
+            this._renderedOnce = true
+            return <C {...{ ...this.props, ...this.state, ...this._methods }} />
         }
     }
 

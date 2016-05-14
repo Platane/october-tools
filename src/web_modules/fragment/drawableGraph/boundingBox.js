@@ -1,9 +1,9 @@
-import {position} from './spacial'
+import {graph} from './spacial'
 
-const computeBoundingBox = position =>
-    position.length==0
+const computeBoundingBox = points =>
+    points.length==0
         ? {xMax:0,xMin:0,yMax:0,yMin:0}
-        : position.reduce(
+        : points.reduce(
             (box, p) => ({
                 xMax: Math.max( p.x, box.xMax ),
                 xMin: Math.min( p.x, box.xMin ),
@@ -22,7 +22,7 @@ const enlargeBoundingBox = ( boundingBox, l ) =>
     })
 
 
-export const boundingBox = ( position ) =>
-    enlargeBoundingBox( computeBoundingBox( position ) , 10 )
+export const boundingBox = ({ vertices }) =>
+    enlargeBoundingBox( computeBoundingBox( vertices ) , 10 )
 
-boundingBox.dependencies = [ position ]
+boundingBox.dependencies = [ graph ]

@@ -1,5 +1,6 @@
 module.exports = {
-    ...require('./animatedPart'),
+    ...require('./edgeLength'),
+    ...require('./schedule'),
     ...require('./source'),
-    withPosition: require('./withPosition'),
+    // withPosition: require('./withPosition'),
 }

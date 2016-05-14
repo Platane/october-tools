@@ -1,31 +1,42 @@
 import * as node            from 'fragment/node'
-import {computePosition, pathGraph as computePathGraph}    from 'sugiyama-graph-drawing'
+import dagre                from 'dagre'
 
-const r = graph =>
-    computePosition( graph )
-r.dependencies = [ node.successorGraph ]
 
-export const position = ( action, r, position = [] ) => {
+const computePosition = ( graph, nodeList ) => {
 
-    switch( action.type ){
+    const g = new dagre.graphlib.Graph
 
-        case 'graph:step' :
-            return position
-            // return step( graph, position )
+    g.setGraph({})
 
-        default :
-            return r.position
-    }
+    g.setDefaultEdgeLabel( (a,b) => ({}) )
+
+    graph
+        .forEach( (arc,a) => g.setNode(''+a, { label: a, width: 1, height: 1 }) )
+
+    graph
+        .forEach( (arc,a) => arc.forEach( b => g.setEdge(''+a, ''+b) ) )
+
+    g.nodesep = 4
+    g.edgesep = 4
+    g.ranksep = 4
+
+    dagre.layout( g )
+
+
+    const vertices = []
+    g.nodes()
+        .forEach( key => {
+            const n = g.node(key)
+            vertices[ +key ] = { x:n.x, y:n.y, name:nodeList[ +key ].id }
+        })
+
+    const edges = vertices.map( () => [] )
+    g.edges()
+       .forEach( e => edges[ +e.v ].push({ b:e.w, points: g.edge( e ).points }) )
+
+    return { vertices, edges }
 }
-position.dependencies = [ r ]
-position.source = true
 
-
-export const graphWithDummy = r =>
-    r.graph
-graphWithDummy.dependencies = [ r ]
-
-
-export const pathGraph = ( graph, nodeList ) =>
-    computePathGraph( graph, nodeList.length )
-pathGraph.dependencies = [ graphWithDummy, node.list ]
+export const graph = ( graph, nodeList ) =>
+    computePosition( graph, nodeList )
+graph.dependencies = [ node.successorGraph, node.list ]

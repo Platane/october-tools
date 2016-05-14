@@ -8,7 +8,7 @@ const clickOnGraph = onClick =>
         event.target.nodeName.toLowerCase() == 'svg'
             && onClick()
 
-const Graph = ({ graph, viewport, position, selected,     selectNode }) =>
+const Graph = ({ viewport, nodes, arcs, selected,     selectNode }) =>
 (
 
     <svg
@@ -16,31 +16,31 @@ const Graph = ({ graph, viewport, position, selected,     selectNode }) =>
         onClick={ clickOnGraph( () => selectNode() ) }
         viewBox={`${viewport.xMin} ${viewport.yMin} ${viewport.xMax-viewport.xMin} ${viewport.yMax-viewport.yMin}` } >
 
-        {
-            graph.reduce( (list, {arc}, i) =>
-                [
-                    ...list,
-                    ...arc.map( (path, j) => <Arc key={i+':'+j} path={ path } />  )
-                ],
-                []
-            )
-        }
+        { arcs.map( (points,i) => <Arc key={i} path={points} /> ) }
 
-        <Flow />
+        { nodes.map( (node,i) => <Node key={i} {...node } selected={ selected==node.name } selectNode={ selectNode } /> ) }
 
-        { graph.map( node => <Node key={node.name} {...node } selected={ selected==node.name } selectNode={ selectNode } /> ) }
-
-
+        <Flow duration={1000}/>
     </svg>
 )
 
 Graph.PropTypes = {
-    graph : PropTypes.arrayOf(
+    nodes : PropTypes.arrayOf(
         PropTypes.shape({
+            x       : PropTypes.number.isRequired,
+            y       : PropTypes.number.isRequired,
             name    : PropTypes.string.isRequired,
-            arc     : PropTypes.arrayOf(
-                PropTypes.array.isRequired
-            ).isRequired,
+        })
+    ).isRequired,
+
+    arcs : PropTypes.arrayOf(
+        PropTypes.shape({
+            points  : PropTypes.arrayOf(
+                PropTypes.shape({
+                    x       : PropTypes.number.isRequired,
+                    y       : PropTypes.number.isRequired,
+                })
+            )
         })
     ).isRequired,
 
