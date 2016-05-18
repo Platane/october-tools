@@ -37,6 +37,10 @@ class Slidable extends Component {
         moveFn  : PropTypes.func,
     };
 
+    params( event ){
+        return params( event, this.refs.container.getBoundingClientRect() )
+    }
+
     constructor( ...args ) {
 
         super( ...args )

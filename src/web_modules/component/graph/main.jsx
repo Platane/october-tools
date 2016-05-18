@@ -34,8 +34,12 @@ export default connect(
             dispatch( {type:'graph:viewport:center:set', payload:point } )
         ,
 
-        setViewportZoom : ( dispatch, getValue, point ) =>
-            dispatch( {type:'graph:viewport:zoom:set', payload:point } )
+        zoomOut : ( dispatch, getValue, point ) =>
+            dispatch( {type:'graph:viewport:zoom:increase', payload:point } )
+        ,
+
+        zoomIn : ( dispatch, getValue, point ) =>
+            dispatch( {type:'graph:viewport:zoom:decrease', payload:point } )
         ,
     }
     ,

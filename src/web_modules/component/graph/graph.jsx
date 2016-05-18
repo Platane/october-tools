@@ -55,6 +55,18 @@ class Graph extends Slidable {
         this.anchor = c
     }
 
+
+    wheel( event ){
+        event.stopPropagation()
+        event.preventDefault()
+
+        const c = unproj( this.params, this.props )
+
+        event.deltaY > 0
+            ? this.props.zoomOut && this.props.zoomOut( c )
+            : this.props.zoomIn && this.props.zoomIn( c )
+    }
+
     render(){
 
         const { viewport, viewportCenter,    selectNode } = this.props
@@ -63,6 +75,7 @@ class Graph extends Slidable {
             <svg className="graph"
                 onMouseDown = { merge( this._down, clickOnGraph( selectNode ) ) }
                 onTouchStart= { this._down }
+                onWheel = { this.wheel.bind( this ) }
                 ref='container'
                 viewBox={`${viewport.xMin} ${viewport.yMin} ${viewport.xMax-viewport.xMin} ${viewport.yMax-viewport.yMin}` }
                 >
