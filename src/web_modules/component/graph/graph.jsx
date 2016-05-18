@@ -1,55 +1,78 @@
 import React, {PropTypes} from 'react'
-import Node     from './node.jsx'
-import Arc      from './arc.jsx'
-import Flow     from './flow/main.jsx'
+import Scene        from './scene.jsx'
+import Slidable     from 'component/abstract/slidable.jsx'
+
+const merge = ( ...fns ) =>
+    ( ...args ) => fns.forEach( fn => fn( ...args ) )
 
 const clickOnGraph = onClick =>
     event =>
         event.target.nodeName.toLowerCase() == 'svg'
             && onClick()
 
-const Graph = ({ viewport, nodes, arcs, selected,     selectNode }) =>
-(
+const unproj = ( {kx, ky, width, height}, {viewportRatio, viewport} ) => {
 
-    <svg
-        className="graph"
-        onClick={ clickOnGraph( () => selectNode() ) }
-        viewBox={`${viewport.xMin} ${viewport.yMin} ${viewport.xMax-viewport.xMin} ${viewport.yMax-viewport.yMin}` } >
+    const vpWidth = viewport.xMax - viewport.xMin
+    const vpHeight = viewport.yMax - viewport.yMin
 
-        { arcs.map( (points,i) => <Arc key={i} path={points} /> ) }
+    const ratio = width / height
+    const r = Math.max( ratio, viewportRatio )
 
-        { nodes.map( (node,i) => <Node key={i} {...node } selected={ selected==node.name } selectNode={ selectNode } /> ) }
 
-        <Flow duration={1000}/>
-    </svg>
-)
 
-Graph.PropTypes = {
-    nodes : PropTypes.arrayOf(
-        PropTypes.shape({
-            x       : PropTypes.number.isRequired,
-            y       : PropTypes.number.isRequired,
-            name    : PropTypes.string.isRequired,
+    if ( ratio > viewportRatio ){
+        return {
+            x : kx * vpHeight * ratio,
+            y : ky * vpHeight,
+        }
+    } else {
+        return {
+            x : kx * vpWidth,
+            y : ky * vpWidth / ratio,
+        }
+    }
+}
+
+
+class Graph extends Slidable {
+
+    down( x ){
+        this.anchor = unproj( x , this.props )
+    }
+
+    move( x ){
+
+        const c = unproj( x , this.props )
+
+        const dx = this.anchor.x - c.x
+        const dy = this.anchor.y - c.y
+
+        this.props.setViewportCenter && this.props.setViewportCenter({
+            x: this.props.viewportCenter.x + dx,
+            y: this.props.viewportCenter.y + dy,
         })
-    ).isRequired,
 
-    arcs : PropTypes.arrayOf(
-        PropTypes.shape({
-            points  : PropTypes.arrayOf(
-                PropTypes.shape({
-                    x       : PropTypes.number.isRequired,
-                    y       : PropTypes.number.isRequired,
-                })
-            )
-        })
-    ).isRequired,
+        this.anchor = c
+    }
 
-    viewport: PropTypes.shape({
-        xMax    : PropTypes.number.isRequired,
-        yMax    : PropTypes.number.isRequired,
-        xMin    : PropTypes.number.isRequired,
-        yMin    : PropTypes.number.isRequired,
-    }).isRequired,
+    render(){
+
+        const { viewport, viewportCenter,    selectNode } = this.props
+
+        return (
+            <svg className="graph"
+                onMouseDown = { merge( this._down, clickOnGraph( selectNode ) ) }
+                onTouchStart= { this._down }
+                ref='container'
+                viewBox={`${viewport.xMin} ${viewport.yMin} ${viewport.xMax-viewport.xMin} ${viewport.yMax-viewport.yMin}` }
+                >
+
+                <Scene {...this.props} />
+
+            </svg>
+        )
+
+    }
 }
 
 export default Graph

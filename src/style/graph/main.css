@@ -3,6 +3,7 @@
     height:100%;
 
     cursor:default;
+    position: relative;
 
     user-select: none;
     -moz-user-select: none;
@@ -50,4 +51,8 @@
     stroke:#7446a0;
     stroke-width:0.5;
     fill: none;
+}
+
+.graph .slidable{
+    position: absolute;
 }
