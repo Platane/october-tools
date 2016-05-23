@@ -60,7 +60,7 @@ class Graph extends Slidable {
         event.stopPropagation()
         event.preventDefault()
 
-        const c = unproj( this.params, this.props )
+        const c = unproj( this.params( event ), this.props )
 
         event.deltaY > 0
             ? this.props.zoomOut && this.props.zoomOut( c )

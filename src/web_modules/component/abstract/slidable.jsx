@@ -38,7 +38,7 @@ class Slidable extends Component {
     };
 
     params( event ){
-        return params( event, this.refs.container.getBoundingClientRect() )
+        return params( this.refs.container.getBoundingClientRect(), event )
     }
 
     constructor( ...args ) {
