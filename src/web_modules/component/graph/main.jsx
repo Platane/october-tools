@@ -6,21 +6,17 @@ export default connect(
     root => [
         root.drawableGraph.graph,
         root.nodeSelected.id,
-        root.drawableGraph.viewport.boundingBox,
-        root.drawableGraph.viewport.center,
-        root.drawableGraph.viewport.zoom,
-        root.drawableGraph.viewport.ratio,
+        root.drawableGraph.viewport.translate,
+        root.drawableGraph.viewport.scale,
     ]
     ,
 
-    ( graph, selected, viewport, viewportCenter, viewportZoom, viewportRatio ) =>
+    ( graph, selected, translate, scale ) =>
         ({
             nodes   : graph.vertices,
             arcs    : [].concat( ...graph.edges.map( x => x.map( x => x.points ) ) ),
-            viewport,
-            viewportCenter,
-            viewportZoom,
-            viewportRatio,
+            viewport_translate: translate,
+            viewport_scale: scale,
             selected
         })
     ,
@@ -30,16 +26,16 @@ export default connect(
             dispatch( {type:'node:select', payload:{ id }} )
         ,
 
-        setViewportCenter : ( dispatch, getValue, point ) =>
-            dispatch( {type:'graph:viewport:center:set', payload:point } )
+        translate : ( dispatch, getValue, point ) =>
+            dispatch( {type:'graph:viewport:translate', payload:point } )
         ,
 
-        zoomOut : ( dispatch, getValue, point ) =>
-            dispatch( {type:'graph:viewport:zoom:increase', payload:point } )
+        scaleUp : ( dispatch, getValue, point ) =>
+            dispatch( {type:'graph:viewport:scale:up', payload:point } )
         ,
 
-        zoomIn : ( dispatch, getValue, point ) =>
-            dispatch( {type:'graph:viewport:zoom:decrease', payload:point } )
+        scaleDown : ( dispatch, getValue, point ) =>
+            dispatch( {type:'graph:viewport:scale:down', payload:point } )
         ,
     }
     ,

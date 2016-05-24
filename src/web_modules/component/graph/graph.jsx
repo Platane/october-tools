@@ -10,66 +10,54 @@ const clickOnGraph = onClick =>
         event.target.nodeName.toLowerCase() == 'svg'
             && onClick()
 
-const unproj = ( {kx, ky, width, height}, {viewportRatio, viewport} ) => {
+const onScreen = ({ kx, ky, width, height }) =>
+({
+    x : kx * width,
+    y : ky * height,
+})
 
-    const vpWidth = viewport.xMax - viewport.xMin
-    const vpHeight = viewport.yMax - viewport.yMin
-
-    const ratio = width / height
-    const r = Math.max( ratio, viewportRatio )
-
-
-
-    if ( ratio > viewportRatio ){
-        return {
-            x : kx * vpHeight * ratio,
-            y : ky * vpHeight,
-        }
-    } else {
-        return {
-            x : kx * vpWidth,
-            y : ky * vpWidth / ratio,
-        }
-    }
-}
+const unproj = ( {x, y}, {viewport_scale, viewport_translate} ) =>
+    ({
+        x : ( x - viewport_translate.x ) / viewport_scale,
+        y : ( y - viewport_translate.y ) / viewport_scale,
+    })
 
 
 class Graph extends Slidable {
 
     down( x ){
-        this.anchor = unproj( x , this.props )
+        this.anchor = onScreen( x )
     }
 
     move( x ){
 
-        const c = unproj( x , this.props )
+        const c = onScreen( x )
 
         const dx = this.anchor.x - c.x
         const dy = this.anchor.y - c.y
 
-        this.props.setViewportCenter && this.props.setViewportCenter({
-            x: this.props.viewportCenter.x + dx,
-            y: this.props.viewportCenter.y + dy,
+        this.props.translate && this.props.translate({
+            x: -dx,
+            y: -dy,
         })
 
         this.anchor = c
     }
 
-
     wheel( event ){
         event.stopPropagation()
         event.preventDefault()
 
-        const c = unproj( this.params( event ), this.props )
+        const c = unproj( onScreen( this.params( event ) ), this.props )
 
         event.deltaY > 0
-            ? this.props.zoomOut && this.props.zoomOut( c )
-            : this.props.zoomIn && this.props.zoomIn( c )
+            ? this.props.scaleDown && this.props.scaleDown( c )
+            : this.props.scaleUp && this.props.scaleUp( c )
     }
 
     render(){
 
-        const { viewport, viewportCenter,    selectNode } = this.props
+        const { viewport_scale, viewport_translate, viewportCenter,    selectNode } = this.props
 
         return (
             <svg className="graph"
@@ -77,10 +65,13 @@ class Graph extends Slidable {
                 onTouchStart= { this._down }
                 onWheel = { this.wheel.bind( this ) }
                 ref='container'
-                viewBox={`${viewport.xMin} ${viewport.yMin} ${viewport.xMax-viewport.xMin} ${viewport.yMax-viewport.yMin}` }
                 >
 
-                <Scene {...this.props} />
+                <g transform={`translate(${viewport_translate.x},${viewport_translate.y}) scale(${viewport_scale})`} >
+
+                    <Scene {...this.props} />
+
+                </g>
 
             </svg>
         )

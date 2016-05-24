@@ -1,81 +1,73 @@
 import {boundingBox as graphBB} from './boundingBox'
 
+/**
+ *
+ * to project a point p on the viewport
+ * p -> P
+ *
+ * P = scale * p  +  translate
+ *
+ *
+ * ( notice translate is exprimed in the viewport unit )
+ *
+ */
 
-// width / height
-export const ratio = ( ) => 1
-
-
-
-const level = [
+const scale_level = [
     0.2,
     0.5,
     1,
     2,
     5,
     10,
-    20
+    20,
+    50,
 ]
-export const zoom = ( action, zoom=3  ) => {
+export const zoomLevel = ( action, zoomLevel=2  ) => {
 
     switch( action.type ){
-        case 'graph:viewport:zoom:increase':
-            return Math.min( zoom+1, level.length-1 )
+        case 'graph:viewport:scale:up':
+            return Math.min( zoomLevel+1, scale_level.length-1 )
 
-        case 'graph:viewport:zoom:decrease':
-            return Math.max( zoom-1, 0 )
+        case 'graph:viewport:scale:down':
+            return Math.max( zoomLevel-1, 0 )
 
         default :
-            return zoom
+            return zoomLevel
     }
 }
-zoom.source = true
+zoomLevel.source = true
 
-export const width = zoom =>
-    level[ zoom ] * 200
-width.dependencies = [ zoom ]
+export const scale = zoomLevel =>
+    scale_level[ zoomLevel ]
+scale.dependencies = [ zoomLevel ]
 
-export const height = ( width, ratio ) =>
-    width / ratio
-height.dependencies = [ width, ratio ]
 
-export const center = ( action, width_, height_, c={x:0,y:0}, _, previousValue ) => {
+
+export const translate = ( action, a, b={x:0,y:0}, _, previousValue ) => {
 
     switch( action.type ){
-        case 'graph:viewport:center:set':
-            return action.payload
+        case 'graph:viewport:translate':
+            return {
+                x : b.x + action.payload.x,
+                y : b.y + action.payload.y,
+            }
 
-        case 'graph:viewport:zoom:increase':
-        case 'graph:viewport:zoom:decrease':
+        case 'graph:viewport:scale:up':
+        case 'graph:viewport:scale:down':
 
-            const _width = previousValue( width )
-            const _height = previousValue( height )
-
-            if ( width_ == _width && height_ == _height )
-                return c
+            const _a = previousValue( scale )
 
             const inv = action.payload
 
             return {
-                x   : ( _width  * inv.x - _width  / 2 + c.x - width_  * inv.x ) / _width,
-                y   : ( _height * inv.y - _height / 2 + c.y - height_ * inv.y ) / _height,
+                x : _a * inv.x + b.x - a * inv.x,
+                y : _a * inv.y + b.y - a * inv.y,
             }
 
+
         default :
-            return c
+            return b
     }
 }
-center.source = true
-center.dependencies = [ width, height ]
-
-
-
-
-
-export const boundingBox = ( center, width, height ) =>
-    ({
-        xMin    : center.x - width/2,
-        yMin    : center.y - height/2,
-        xMax    : center.x + width/2,
-        yMax    : center.y + height/2,
-    })
-boundingBox.dependencies = [ center, width, height ]
+translate.source = true
+translate.dependencies = [ scale ]
