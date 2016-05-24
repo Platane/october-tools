@@ -16,7 +16,7 @@
 }
 .node > text {
     font-family:Verdana;
-    font-size:2.5px;
+    font-size:10px;
     fill:#888;
 }
 .node-tic{
@@ -30,7 +30,7 @@
 .arc-path {
     fill:none;
     stroke:#aaa;
-    stroke-width:0.1;
+    stroke-width:0.8;
 }
 .arc-arrow {
     fill:#aaa;
@@ -40,7 +40,7 @@
     pointer-events: none;
 }
 .flow-node > circle{
-    fill:#7446a0;
+    fill:#d82323;
     transform: scale(0);
     transition: transform 200ms ease;
 }
@@ -48,8 +48,8 @@
     transform: scale(1);
 }
 .flow-arc > path{
-    stroke:#7446a0;
-    stroke-width:0.5;
+    stroke:#d82323;
+    stroke-width:1.8;
     fill: none;
 }
 

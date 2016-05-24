@@ -37,7 +37,7 @@ class FlowAnimatetor extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if ( this.props.branch != nextProps.branch ) {
+        if ( this.props.schedule != nextProps.schedule ) {
             this.state.k = 0
             this.loop( nextProps.branch )
         }

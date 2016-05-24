@@ -11,14 +11,23 @@ export default connect(
     ]
     ,
 
-    ( graph, selected, translate, scale ) =>
-        ({
-            nodes   : graph.vertices,
-            arcs    : [].concat( ...graph.edges.map( x => x.map( x => x.points ) ) ),
+    ( graph, selected, translate, scale ) => {
+
+        const proj = k =>
+            ({
+                ...k,
+                x: k.x * scale + translate.x,
+                y: k.y * scale + translate.y,
+            })
+
+        return ({
+            nodes   : graph.vertices.map( proj ),
+            arcs    : [].concat( ...graph.edges.map( x => x.map( x => x.points.map( proj ) ) ) ),
             viewport_translate: translate,
             viewport_scale: scale,
             selected
         })
+    }
     ,
 
     {

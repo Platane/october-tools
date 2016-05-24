@@ -57,7 +57,7 @@ class Graph extends Slidable {
 
     render(){
 
-        const { viewport_scale, viewport_translate, viewportCenter,    selectNode } = this.props
+        const { viewport_scale, viewport_translate,   selectNode } = this.props
 
         return (
             <svg className="graph"
@@ -67,7 +67,7 @@ class Graph extends Slidable {
                 ref='container'
                 >
 
-                <g transform={`translate(${viewport_translate.x},${viewport_translate.y}) scale(${viewport_scale})`} >
+                <g>
 
                     <Scene {...this.props} />
 
@@ -78,5 +78,6 @@ class Graph extends Slidable {
 
     }
 }
+// <g transform={`translate(${viewport_translate.x},${viewport_translate.y}) scale(${viewport_scale})`} >
 
 export default Graph

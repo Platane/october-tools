@@ -6,7 +6,7 @@ const Node = ({ x, y, changed }) =>
         transform={`translate(${x},${y})`}
         >
 
-        <circle cx="0" cy="0" r="1.2" />
+        <circle cx="0" cy="0" r="4" />
 
     </g>
 )

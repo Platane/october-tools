@@ -9,9 +9,9 @@ const Node = ({ x, y, name,   selected, selectNode }) =>
 
         <circle cx="0" cy="0" r="6.5" fill="rgba(0,0,0,0)" />
 
-        <circle className="node-tic" cx="0" cy="0" r="1" />
+        <circle className="node-tic" cx="0" cy="0" r="3" />
 
-        <text x="1" y="0.1">{ name }</text>
+        <text x="5" y="2">{ name }</text>
     </g>
 )
 
