@@ -1,6 +1,14 @@
 {
     "name": "refinery-tools",
-    "version": "0.4.0",
+    "version": "0.4.1",
+
+    "description": "Set of dev tools to inspect a refinery app.",
+    "repository": "https://github.com/Platane/refinery",
+    "files": [
+        "dist/",
+        "lib/"
+    ],
+    "main": "lib/web_modules/index.js",
 
     "dependencies": {
         "refinery-js": "^0.4.2",
@@ -32,6 +40,12 @@
 
     "scripts": {
         "start"         : "webpack-dev-server --port 8082 --content-base ./ -d",
+
+        "build:demo": "rm -rf dist & env NODE_ENV=\"demo\" webpack",
+        "build": "babel --out-dir ./lib ./src",
+        "bundle": "env NODE_ENV=\"development\" webpack",
+        "bundle:min": "env NODE_ENV=\"production\" webpack",
+        "prepublish": "rm -rf lib & rm -rf dist & npm run build & npm run bundle & npm run bundle:min",
 
         "test": "env NODE_ENV=\"test\" mocha --compilers js:babel-register --recursive  --timeout 200",
         "test:watch": "npm test -- --watch --bail"

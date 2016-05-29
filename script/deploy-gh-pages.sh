@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # build demo
-rm -r -f ./dist; webpack
+npm run build:demo
 
 # deploy demo to gh pages
 cd ./dist

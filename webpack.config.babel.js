@@ -1,31 +1,20 @@
 const path = require('path')
 const webpack = require('webpack')
 
-const babelPlugins = [
-    'transform-class-properties',
-    'transform-es2015-modules-commonjs',
-    'transform-es2015-destructuring',
-    'transform-es2015-parameters',
-    'transform-es2015-classes',
-    'transform-es2015-spread',
-    'transform-object-rest-spread',
-    'transform-export-extensions',
-]
-
-const babelPresets = process.env.NODE_ENV == 'production'
-    ? ['es2015', 'stage-1']
-    : []
+const minify = process.env.NODE_ENV == 'production'
+const buildDemo = process.env.NODE_ENV == 'demo'
 
 module.exports = {
 
-    entry: {
-        'demo' : [ './demo/todo/index' ],
-    },
+    entry: buildDemo
+        ? { 'demo' : [ './demo/todo/index' ] }
+        : { 'refinery-tools' : [ './src/web_modules/index.jsx' ] }
+    ,
 
     output: {
-        // libraryTarget: 'commonjs2',
+        libraryTarget: "umd",
         path: path.join(__dirname, 'dist'),
-        filename: '[name].js',
+        filename: `[name]${ minify ? '.min' : '' }.js`,
     },
 
     module: {
@@ -35,31 +24,18 @@ module.exports = {
                 test: /\.js$/,
                 exclude: /(node_modules|\.tmp)/,
                 loader: 'babel',
-                query: {
-                    presets: babelPresets,
-                    plugins: babelPlugins,
-                }
             },
 
             {
                 test: /\.jsx$/,
                 exclude: /(node_modules|\.tmp)/,
                 loader: 'babel',
-                query: {
-                    presets: [ ...babelPresets, 'react'],
-                    plugins: babelPlugins,
-                }
             },
 
             {
                 test: /\.html?$/,
                 exclude: /node_modules/,
                 loaders: [],
-            },
-
-            {
-                test: /\.scss$/,
-                loader: 'style!css!sass'
             },
 
             {
@@ -78,7 +54,7 @@ module.exports = {
         }),
 
         ...(
-            process.env.NODE_ENV == 'production'
+            minify
                 ? [ new webpack.optimize.UglifyJsPlugin({ compress: {warnings: false} }) ]
                 : []
         )
