@@ -46,4 +46,4 @@ export const list = ( action, previousValue=[] ) => {
             return previousValue
     }
 }
-list.source = true
+list.allActions = true

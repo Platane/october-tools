@@ -1,7 +1,7 @@
 require('file?name=index.html!./index.html')
 require('./style/index.css')
 
-import {create}         from 'october'
+import {create}         from 'refinery-js'
 import ReactDOM         from 'react-dom'
 import React            from 'react'
 import {todo}           from './fragment'

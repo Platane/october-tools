@@ -6,7 +6,9 @@ export const source = ( nodeList, selectedAction, change ) =>
     !selectedAction
         ? []
         : nodeList
-            .filter( ({ source, id }) => source && change[id]  )
+            .filter( x =>
+                ( x.definition.allActions || ( x.definition.actions && change[x.id] ) )
+            )
             .map( ({index}) => index )
 
 source.dependencies = [ node.list, action, change ]

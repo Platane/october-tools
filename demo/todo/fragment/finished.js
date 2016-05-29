@@ -16,4 +16,5 @@ export const finished = ( action, previousValue={} ) => {
             return previousValue
     }
 }
-finished.source = true
+finished.initValue = {}
+finished.actions = [ 'todo:finish', 'todo:unfinish' ]

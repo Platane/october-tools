@@ -1,7 +1,7 @@
-# october-tools
+# refinery-tools
 
 
-[![Build Status](https://img.shields.io/travis/Platane/october-tools.svg?style=flat-square)](https://travis-ci.org/Platane/october-tools)
-[![dependency status](https://img.shields.io/david/Platane/october-tools.svg?style=flat-square)](https://david-dm.org/platane/october-tools)
+[![Build Status](https://img.shields.io/travis/Platane/refinery-tools.svg?style=flat-square)](https://travis-ci.org/Platane/refinery-tools)
+[![dependency status](https://img.shields.io/david/Platane/refinery-tools.svg?style=flat-square)](https://david-dm.org/platane/refinery-tools)
 
-Set of dev tools to inspect an october app.
+Set of dev tools to inspect a refinery app.

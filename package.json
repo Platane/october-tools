@@ -1,10 +1,11 @@
 {
-    "name": "october-tools",
-    "version": "0.3.0",
+    "name": "refinery-tools",
+    "version": "0.4.0",
 
     "dependencies": {
-        "october": "Platane/october",
+        "refinery-js": "^0.4.2",
         "dagre" : "*",
+        "klayjs" : "^0.4.1",
         "react" : "15.x",
         "react-dom" : "15.x",
         "react-motion" : "0.4.x"
@@ -30,7 +31,7 @@
     },
 
     "scripts": {
-        "start"         : "./node_modules/.bin/webpack-dev-server --port 8082 --content-base ./ -d",
+        "start"         : "webpack-dev-server --port 8082 --content-base ./ -d",
 
         "test": "env NODE_ENV=\"test\" mocha --compilers js:babel-register --recursive  --timeout 200",
         "test:watch": "npm test -- --watch --bail"

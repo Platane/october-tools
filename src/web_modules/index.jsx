@@ -2,14 +2,14 @@ import React, {PropTypes, Component} from 'react'
 import App  from 'component/app.jsx'
 
 import fragment         from 'fragment'
-import {create}         from 'october'
+import {create}         from 'refinery-js'
 
 
 require('../style/main.css')
 
 
 
-class OctoberTools extends Component {
+class RefineryTools extends Component {
 
     static propsTypes = {
         list        : PropTypes.func.isRequired,
@@ -21,34 +21,18 @@ class OctoberTools extends Component {
         getValue      : PropTypes.func.isRequired,
         register      : PropTypes.func.isRequired,
         unregister    : PropTypes.func.isRequired,
-        hook          : PropTypes.func.isRequired,
     };
 
     constructor(){
 
         super()
         this.store = create( fragment )
-
-        let i = 100
-
-        this._graphLoop = () => {
-
-            this.store.dispatch( {type:'graph:step'} )
-
-            if ( i-- > 0 )
-                requestAnimationFrame( this._graphLoop )
-        }
     }
 
     componentDidMount() {
 
-
         // the graph
-
         this.store.dispatch( {type:'node:init', payload:{ node_by_id: this.props.by_id()} } )
-
-        this._graphLoop()
-
 
         // the dispatcher
         let i = 1
@@ -63,7 +47,6 @@ class OctoberTools extends Component {
             getValue      : this.store.getValue,
             register      : this.store.register,
             unregister    : this.store.unregister,
-            hook          : this.store.hook,
         }
     }
 
@@ -72,4 +55,4 @@ class OctoberTools extends Component {
     }
 }
 
-export default OctoberTools
+export default RefineryTools

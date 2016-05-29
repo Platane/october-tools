@@ -1,6 +1,6 @@
 import React, {PropTypes, Component} from 'react'
 import Todo from './todo.jsx'
-import OctoberTools from '../../../src/web_modules/index.jsx'
+import DevTools from '../../../src/web_modules/index.jsx'
 
 class App extends Component {
 
@@ -25,7 +25,7 @@ class App extends Component {
             <div style={{ display:'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                 <Todo />
                 <div style={{ width: '160%'}} >
-                    <OctoberTools {...this.props} />
+                    <DevTools {...this.props} />
                 </div>
             </div>
         )

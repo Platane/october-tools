@@ -1,12 +1,6 @@
 
-export const filter = ( action, previousValue='all' ) => {
+export const filter = ( action ) =>
+    action.payload.filter
 
-    switch( action.type ) {
-        case 'app:filter' :
-            return action.payload.filter
-
-        default :
-            return previousValue
-    }
-}
-filter.source = true
+filter.actions = [ 'app:filter' ]
+filter.initValue = 'all'

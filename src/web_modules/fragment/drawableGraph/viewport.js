@@ -20,7 +20,7 @@ const scale_level = [
     2,
     4,
 ]
-export const zoomLevel = ( action, zoomLevel=2  ) => {
+export const zoomLevel = ( action, zoomLevel ) => {
 
     switch( action.type ){
         case 'graph:viewport:scale:up':
@@ -28,12 +28,10 @@ export const zoomLevel = ( action, zoomLevel=2  ) => {
 
         case 'graph:viewport:scale:down':
             return Math.max( zoomLevel-1, 0 )
-
-        default :
-            return zoomLevel
     }
 }
-zoomLevel.source = true
+zoomLevel.initValue = 2
+zoomLevel.actions = [ 'graph:viewport:scale:up', 'graph:viewport:scale:down' ]
 
 export const scale = zoomLevel =>
     scale_level[ zoomLevel ]
@@ -41,7 +39,7 @@ scale.dependencies = [ zoomLevel ]
 
 
 
-export const translate = ( action, a, b={x:0,y:0}, _, previousValue ) => {
+export const translate = ( action, a, b={x:0,y:0}, _a ) => {
 
     switch( action.type ){
         case 'graph:viewport:translate':
@@ -53,19 +51,14 @@ export const translate = ( action, a, b={x:0,y:0}, _, previousValue ) => {
         case 'graph:viewport:scale:up':
         case 'graph:viewport:scale:down':
 
-            const _a = previousValue( scale )
-
             const inv = action.payload
 
             return {
                 x : _a * inv.x + b.x - a * inv.x,
                 y : _a * inv.y + b.y - a * inv.y,
             }
-
-
-        default :
-            return b
     }
 }
-translate.source = true
+translate.initValue = {x:0,y:0}
 translate.dependencies = [ scale ]
+translate.actions = [ 'graph:viewport:translate', 'graph:viewport:scale:up', 'graph:viewport:scale:down' ]
