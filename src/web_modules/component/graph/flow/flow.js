@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react'
-import Arc      from './arc.jsx'
-import Node     from './node.jsx'
+import Arc      from './arc'
+import Node     from './node'
 
 const Flow = ({ branch, node, position, k, source }) =>
 (

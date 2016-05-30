@@ -1,5 +1,5 @@
-import Graph        from './graph.jsx'
-import {connect}    from 'component/abstract/connect.jsx'
+import Graph        from './graph'
+import {connect}    from 'component/abstract/connect'
 
 export default connect(
 

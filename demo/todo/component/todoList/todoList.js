@@ -1,5 +1,5 @@
 import React, {PropTypes, Component} from 'react'
-import TodoItem from './todoItem.jsx'
+import TodoItem from './todoItem'
 
 const TodoList = ({ todos, remove, setFinish }) =>
 (

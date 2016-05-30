@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react'
-import Scene        from './scene.jsx'
-import Slidable     from 'component/abstract/slidable.jsx'
+import Scene        from './scene'
+import Slidable     from 'component/abstract/slidable'
 
 const merge = ( ...fns ) =>
     ( ...args ) => fns.forEach( fn => fn( ...args ) )

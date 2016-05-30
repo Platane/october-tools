@@ -1,6 +1,6 @@
 import React, {PropTypes, Component} from 'react'
-import Todo from './todo.jsx'
-import DevTools from '../../../src/web_modules/index.jsx'
+import Todo from './todo'
+import DevTools from '../../../src/web_modules/index'
 
 class App extends Component {
 

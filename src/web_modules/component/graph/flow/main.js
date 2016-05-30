@@ -1,5 +1,5 @@
-import FlowAnimator from './flowAnimator.jsx'
-import {connect}    from 'component/abstract/connect.jsx'
+import FlowAnimator from './flowAnimator'
+import {connect}    from 'component/abstract/connect'
 
 export default connect(
 

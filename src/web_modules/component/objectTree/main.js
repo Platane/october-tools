@@ -1,5 +1,5 @@
 import React, {PropTypes, Component} from 'react'
-import ObjectTree_       from './objectTree.jsx'
+import ObjectTree_       from './objectTree'
 
 const decorateObject = ( x, opened, path = [] ) => {
 

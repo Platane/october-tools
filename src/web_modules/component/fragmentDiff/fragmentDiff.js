@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react'
-import ObjectTreeDiff         from './objectTreeDiff/main.jsx'
+import ObjectTreeDiff         from './objectTreeDiff/main'
 
 const FragmentDiff = ({ diff }) => {
 

@@ -1,5 +1,5 @@
 import React, {PropTypes, Component} from 'react'
-import TodoFooter_ from './todoFooter.jsx'
+import TodoFooter_ from './todoFooter'
 import * as actions from '../../action'
 
 import {todo} from '../../fragment'

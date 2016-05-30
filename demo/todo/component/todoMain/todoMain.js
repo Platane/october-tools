@@ -1,5 +1,5 @@
 import React, {PropTypes, Component} from 'react'
-import List from '../todoList/main.jsx'
+import List from '../todoList/main'
 const TodoMain = ({ label }) =>
 (
     <section className="main">

@@ -5,7 +5,7 @@ import {create}         from 'refinery-js'
 import ReactDOM         from 'react-dom'
 import React            from 'react'
 import {todo}           from './fragment'
-import App              from './component/app.jsx'
+import App              from './component/app'
 
 const pack = create( {todo} )
 

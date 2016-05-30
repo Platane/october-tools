@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react'
-import Action      from './action.jsx'
+import Action      from './action'
 
 const ActionList = ({ list, selectedId,    selectAction }) =>
 (

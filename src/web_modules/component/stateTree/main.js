@@ -1,5 +1,5 @@
-import StateTree        from './stateTree.jsx'
-import {connect}        from 'component/abstract/connect.jsx'
+import StateTree        from './stateTree'
+import {connect}        from 'component/abstract/connect'
 
 export default connect(
 

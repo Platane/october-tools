@@ -1,5 +1,5 @@
 import React        from 'react'
-import Leaf         from './leaf.jsx'
+import Leaf         from './leaf'
 
 
 const ObjectTree = ({ x , open, close }) =>

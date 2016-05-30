@@ -1,5 +1,5 @@
-import ActionList      from './actionList.jsx'
-import {connect}    from 'component/abstract/connect.jsx'
+import ActionList      from './actionList'
+import {connect}    from 'component/abstract/connect'
 
 export default connect(
 

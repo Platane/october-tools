@@ -1,5 +1,5 @@
 import React, {PropTypes}   from 'react'
-import ObjectTree           from 'component/objectTree/main.jsx'
+import ObjectTree           from 'component/objectTree/main'
 
 const Action = ({ id, action, selected,   selectAction }) =>
 (

@@ -1,5 +1,5 @@
 import React, {PropTypes, Component} from 'react'
-import Flow     from './flow.jsx'
+import Flow     from './flow'
 
 let u = 0
 

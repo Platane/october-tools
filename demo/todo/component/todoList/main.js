@@ -1,5 +1,5 @@
 import React, {PropTypes, Component} from 'react'
-import TodoList_ from './todoList.jsx'
+import TodoList_ from './todoList'
 import * as actions from '../../action'
 
 import {todo} from '../../fragment'

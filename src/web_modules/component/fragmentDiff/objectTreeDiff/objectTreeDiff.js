@@ -1,5 +1,5 @@
 import React        from 'react'
-import Leaf         from 'component/objectTree/leaf.jsx'
+import Leaf         from 'component/objectTree/leaf'
 
 
 const isLeaf = value =>

@@ -1,6 +1,6 @@
 import React, {PropTypes, Component} from 'react'
-import ObjectTree            from 'component/objectTree/main.jsx'
-import ObjectTreeDiff_       from './objectTreeDiff.jsx'
+import ObjectTree            from 'component/objectTree/main'
+import ObjectTreeDiff_       from './objectTreeDiff'
 
 class ObjectTreeDiff extends ObjectTree {
 

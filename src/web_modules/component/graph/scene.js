@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react'
-import Node         from './node.jsx'
-import Arc          from './arc.jsx'
-import Flow         from './flow/main.jsx'
+import Node         from './node'
+import Arc          from './arc'
+import Flow         from './flow/main'
 
 const clickOnGraph = onClick =>
     event =>

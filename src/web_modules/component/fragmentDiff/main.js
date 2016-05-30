@@ -1,5 +1,5 @@
-import FragmentDiff     from './fragmentDiff.jsx'
-import {connect}        from 'component/abstract/connect.jsx'
+import FragmentDiff     from './fragmentDiff'
+import {connect}        from 'component/abstract/connect'
 
 export default connect(
 

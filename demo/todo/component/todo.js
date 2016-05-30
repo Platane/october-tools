@@ -1,7 +1,7 @@
 import React, {PropTypes, Component} from 'react'
-import TodoMain     from './todoMain/main.jsx'
-import TodoFooter   from './todoFooter/main.jsx'
-import TodoHeader   from './todoHeader/main.jsx'
+import TodoMain     from './todoMain/main'
+import TodoFooter   from './todoFooter/main'
+import TodoHeader   from './todoHeader/main'
 
 const Todo = () =>
 (

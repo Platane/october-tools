@@ -1,8 +1,8 @@
 import React          from 'react'
-import Graph          from './graph/main.jsx'
-import ActionList     from './actionList/main.jsx'
-import FragmentDiff   from './fragmentDiff/main.jsx'
-import StateTree      from './stateTree/main.jsx'
+import Graph          from './graph/main'
+import ActionList     from './actionList/main'
+import FragmentDiff   from './fragmentDiff/main'
+import StateTree      from './stateTree/main'
 
 const App = () =>
 (

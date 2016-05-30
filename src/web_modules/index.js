@@ -1,11 +1,10 @@
+require('../style/main.css')
+
 import React, {PropTypes, Component} from 'react'
-import App  from 'component/app.jsx'
+import App  from 'component/app'
 
 import fragment         from 'fragment'
 import {create}         from 'refinery-js'
-
-
-require('../style/main.css')
 
 
 

@@ -1,5 +1,5 @@
 import React, {PropTypes, Component} from 'react'
-import TodoHeader_ from './todoHeader.jsx'
+import TodoHeader_ from './todoHeader'
 import * as actions from '../../action'
 
 
