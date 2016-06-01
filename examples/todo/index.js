@@ -1,4 +1,4 @@
-require('file?name=index.html!./index.html')
+require('./index.html')
 require('./style/index.css')
 
 import {create}         from 'refinery-js'

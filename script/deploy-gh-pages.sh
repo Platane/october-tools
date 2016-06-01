@@ -1,9 +1,9 @@
 #!/bin/sh
 
-# build demo
-npm run build:demo
+# build examples
+npm run build:examples
 
-# deploy demo to gh pages
+# deploy examples to gh pages
 cd ./dist
 git init
 git config user.name "Travis CI"

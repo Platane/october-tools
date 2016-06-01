@@ -1,6 +1,6 @@
 import * as node            from 'fragment/node'
 import dagre                from 'dagre'
-import klay                 from 'klayjs'
+// import klay                 from 'klayjs'
 
 const toJSONKGraph = ( graph, nodeList ) =>
     []

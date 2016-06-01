@@ -1,12 +1,12 @@
 const path = require('path')
 const webpack = require('webpack')
 
-module.exports = {
+var config = {
 
-    entry: { 'demo' : [ './demo/todo/index' ] },
+    entry: { 'style/style' : [ './src/web_modules/style/style.js' ] },
 
     output: {
-        path: path.join(__dirname, 'dist'),
+        path: path.join(__dirname, '../lib'),
         filename: `[name].js`,
     },
 
@@ -20,12 +20,6 @@ module.exports = {
             },
 
             {
-                test: /\.html?$/,
-                exclude: /node_modules/,
-                loaders: [],
-            },
-
-            {
                 test: /\.css$/,
                 loader: 'style!css'
             },
@@ -33,3 +27,7 @@ module.exports = {
         ]
     },
 }
+
+webpack(config).run(function( err, stats ){
+    err && console.log( err, stats )
+})

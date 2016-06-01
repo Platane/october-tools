@@ -1,4 +1,5 @@
-require('../style/main.css')
+
+import './style/style'
 
 import React, {PropTypes, Component} from 'react'
 import App  from 'component/app'
