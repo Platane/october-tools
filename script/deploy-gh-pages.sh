@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# build lib
+npm run build:lib
+
 # build examples
 npm run build:examples
 
