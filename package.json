@@ -44,8 +44,8 @@
     "scripts": {
         "start": "node script/server-examples.js",
 
-        "build:examples": "rm -rf dist & node script/build-examples.js",
-        "build:lib": "rm -rf lib & babel src/web_modules --out-dir lib & node script/build-style.js",
+        "build:examples": "rm -rf dist && node script/build-examples.js",
+        "build:lib": "rm -rf lib && babel src/web_modules --out-dir lib && node script/build-style.js",
         "prepublish": "npm run build:lib",
 
         "test": "env NODE_ENV=\"test\" mocha --compilers js:babel-register --recursive  --timeout 200",
