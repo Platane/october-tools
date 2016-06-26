@@ -4,7 +4,7 @@ const Action = ({ id, action, selected,   selectAction }) =>
 (
     <div className={'timeLineAction'+( selected ? ' timeLineAction--selected' : '')} onClick={ () => selectAction( selected ? null : id ) } >
 
-        <div className={'timeLineAction-ball'+( selected ? ' timeLineAction-ball--selected' : '')} />
+        <div className={'timeLineAction-ball timeLineAction-ball--'+action.type.replace(/\W:/,'')+( selected ? ' timeLineAction-ball--selected' : '')} />
 
         <div className="timeLineAction-type">{ action.type }</div>
 

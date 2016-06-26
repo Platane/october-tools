@@ -24,5 +24,5 @@
     transform: scale(1.35);
 }
 .timeLineAction-type{
-
+    white-space: nowrap;
 }
