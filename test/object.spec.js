@@ -99,6 +99,15 @@ describe('object utils', () => {
         it('with object which require merge (deep)', () =>{
             expect( o.nest( { 'U.A.B':17,'U.A.C':18, } ) ).toEqual( { U:{ A:{ B: 17, C: 18 } } } )
         })
+        it('with object which require flatten', () =>{
+            expect( o.nest( { 'A':{ C:{F:6}, D:5 },'A.C.E':18, } ) ).toEqual( { A:{ C: {F:6, E:18 }, D: 5 } } )
+        })
+        it('with object with null entries', () =>{
+            expect( o.nest( { 'A':1, 'B':null } ) ).toEqual( { A:1, B:null } )
+        })
+        xit('with object with empty array entries', () =>{
+            expect( o.nest( { 'A':1, 'B':[] } ) ).toEqual( { A:1, B:[] } )
+        })
 
     })
 

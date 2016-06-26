@@ -27,6 +27,8 @@ class RefineryTools extends Component {
 
         super()
         this.store = create( fragment )
+
+        window.devToolState = () => this.store.getState()
     }
 
     componentDidMount() {
@@ -37,7 +39,7 @@ class RefineryTools extends Component {
         // the dispatcher
         let i = 1
         this.props.hook( (action, beforeState, afterState) =>
-            this.store.dispatch( {type:'catchAction', payload:{action, beforeState, afterState, id:i++ } } )
+            this.store.dispatch( {type:'catchAction', payload:{action, beforeState, afterState, id:i++, date:Date.now() } } )
         )
     }
 

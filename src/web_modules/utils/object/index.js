@@ -41,6 +41,7 @@ export const flatten = (A, path=[]) =>
 export const nest = A => {
 
     if ( !A || typeof A != 'object' )
+        // primitive
         return A
 
     const flat = flatten( A )
@@ -49,6 +50,7 @@ export const nest = A => {
 
     const res = {}
 
+    // merge the keys
     while( keys.length ){
         const key = keys.shift()
         const path = key.split('.')

@@ -1,6 +1,6 @@
 import React          from 'react'
 import Graph          from './graph/main'
-import ActionList     from './actionList/main'
+import TimeLine       from './timeLine'
 import FragmentDiff   from './fragmentDiff/main'
 import StateTree      from './stateTree/main'
 
@@ -26,7 +26,7 @@ const App = () =>
         </div>
 
         <div className="tools-actionList">
-            <ActionList />
+            <TimeLine />
         </div>
     </div>
 )

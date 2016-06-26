@@ -1,6 +1,6 @@
 import * as node   from 'fragment/node'
 import {graph}                  from 'fragment/drawableGraph'
-import {change}                 from 'fragment/actionSelected'
+import {action}                 from 'fragment/actionSelected'
 import {edgeLength}             from './edgeLength'
 import {source}                 from './source'
 
@@ -39,12 +39,13 @@ const longuestLine = ( source, graph, filter ) => {
 }
 
 
-export const schedule = ( edgeLength, {edges, vertices}, source, _change, node_by_id ) => {
+export const schedule = ( edgeLength, {edges, vertices}, source, action, node_by_id ) => {
 
     // the node that have changed, indexed by index
     const change = []
-    Object.keys( _change )
-        .forEach( id => change[ node_by_id[ id ].index ] = true )
+    Object.keys( action && action.afterState || {} )
+        .filter( nodeId => action.afterState[ nodeId ] != action.beforeState[ nodeId ] )
+        .forEach( nodeId => change[ node_by_id[ nodeId ].index ] = true )
 
     // for each node that have changed, the longuest line to go from a source to it
     const l = longuestLine( source, edgeLength, change )
@@ -80,4 +81,4 @@ export const schedule = ( edgeLength, {edges, vertices}, source, _change, node_b
 
     return { branch, node }
 }
-schedule.dependencies = [ edgeLength, graph, source, change , node.by_id ]
+schedule.dependencies = [ edgeLength, graph, source, action , node.by_id ]

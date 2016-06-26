@@ -8,41 +8,86 @@ export const id = ( action ) =>
 id.actions = [ 'action:select' ]
 
 
-export const state = ( actionId, nodeId, actionList, actionState ) =>
-    nodeId
-        ? (( actionList.find( x => actionId == x.id ) || {} ).afterState || {} )[ nodeId ]
-        : actionState[ actionId ] || {}
 
-
-state.dependencies = [ id, node.id, _action.list, _action.state ]
-
-
-export const diff = ( actionId, nodeId, actionDiff ) => {
-    let diff = actionDiff[ actionId ]
-    const path = nodeId
-        ? nodeId.split('.')
-        : []
-
-    while( path.length ){
-        const i = path.shift()
-        typeof diff == 'object' && diff && i in diff
-            ? diff = diff[ i ]
-            : diff = null
-    }
-
-    return diff
-}
-
-diff.dependencies = [ id, node.id, _action.diff ]
-
-
-export const change = ( id, actionChange ) =>
-    actionChange[ id ] || {}
-
-change.dependencies = [ id, _action.change ]
 
 
 export const action = ( id, actionList ) =>
     actionList.find( x => id == x.id )
 
 action.dependencies = [ id, _action.list ]
+
+
+
+
+export const state = ( nodeId, action ) =>
+    !action
+        ? null
+        : nest(
+            !nodeId
+                ? action.afterState
+                : action.afterState[ nodeId ]
+        )
+
+state.dependencies = [ node.id, action ]
+
+
+/**
+ *
+ * diff stucture is
+ * a : {
+ *    b : {
+ *       before : x
+ *       after  : y
+ *
+ */
+export const diff = ( nodeId, action ) => {
+
+    if ( !action )
+        return
+
+    else if ( nodeId )
+        return action.afterState[ nodeId ] == action.beforeState[ nodeId ]
+            ? null
+            : nest({
+                before  : action.beforeState[ nodeId ],
+                after   : action.afterState[ nodeId ],
+            })
+
+    else {
+        const diff = {}
+        Object.keys( action.beforeState )
+            .filter( nodeId => action.afterState[ nodeId ] != action.beforeState[ nodeId ] )
+            .forEach( nodeId =>
+                diff[ nodeId ] = {
+                    before  : action.beforeState[ nodeId ],
+                    after   : action.afterState[ nodeId ],
+                }
+            )
+
+
+        const o = nest( diff )
+
+        // ensure that for each before, there is an after
+        // which is a shitty pattern yeah
+        const traverse = o => {
+
+            if ( !o || typeof o != 'object' )
+                return
+
+            if ( 'after' in o && !( 'before' in o ) )
+                o.before = typeof o.after == 'object' ? {} : null
+
+            else if ( 'before' in o && !( 'after' in o ) )
+                o.after = typeof o.before == 'object' ? {} : null
+
+            Object.keys( o )
+                .forEach( key => traverse( o[ key ] ) )
+        }
+
+        traverse( o )
+
+        return o
+    }
+}
+
+diff.dependencies = [ node.id, action ]
