@@ -23,11 +23,11 @@ const UpdateArgument = ({ dependencies, result, action }) => {
                             <div className="updateArgument-arg" key={id} >
                                 <ObjectTree object={{
                                         [id] : {
-                                            before,
-                                            after :
+                                            value : after,
+                                            previousValue :
                                                 before == after
                                                     ? 'no change'
-                                                    : after
+                                                    : before
                                         }
                                     }} />
                             </div>
@@ -46,7 +46,7 @@ const UpdateArgument = ({ dependencies, result, action }) => {
 
 
             </div>
-            
+
             <div className="updateArgument-arrow" >=></div>
 
             <div className="updateArgument-left" >
