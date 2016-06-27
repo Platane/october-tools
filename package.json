@@ -1,6 +1,6 @@
 {
   "name": "refinery-tools",
-  "version": "0.4.6",
+  "version": "0.4.7",
   "description": "Set of dev tools to inspect a refinery app.",
   "repository": "https://github.com/Platane/refinery-tools",
   "files": [
