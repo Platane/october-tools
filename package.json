@@ -8,7 +8,7 @@
   ],
   "main": "lib/index.js",
   "dependencies": {
-    "dagre": "*"
+    "klayjs": "^0.4.1"
   },
   "peerDependencies": {
     "refinery-js": "^0.4.2",
