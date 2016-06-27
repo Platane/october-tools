@@ -3,6 +3,7 @@ import Graph          from './graph/main'
 import TimeLine       from './timeLine'
 import FragmentDiff   from './fragmentDiff/main'
 import StateTree      from './stateTree/main'
+import UpdateArgument from './updateArgument'
 
 const App = () =>
 (
@@ -21,6 +22,10 @@ const App = () =>
 
             <div className="tools-graph">
                 <Graph />
+            </div>
+
+            <div className="tools-updateArgument">
+                <UpdateArgument />
             </div>
 
         </div>

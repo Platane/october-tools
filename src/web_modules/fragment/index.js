@@ -6,4 +6,5 @@ module.exports = {
     actionSelected      : require('./actionSelected'),
     nodeSelected        : require('./nodeSelected'),
     timeLine            : require('./timeLine'),
+    updateArgument      : require('./updateArgument'),
 }

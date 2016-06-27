@@ -1,0 +1,34 @@
+.updateArgument{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.updateArgument-right{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.updateArgument-args{
+    padding: 10px;
+    position: relative;
+}
+.updateArgument-parentesis{
+    width: 4px;
+    border-top: solid 1px #aaa;
+    border-right: solid 1px #aaa;
+    border-bottom: solid 1px #aaa;
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    right: 0;
+}
+.updateArgument-arrow{
+    margin: 5px;
+    color:#aaa;
+}

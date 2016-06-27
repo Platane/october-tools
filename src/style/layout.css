@@ -26,7 +26,14 @@
     margin:5px;
     margin-top: 0;
     width:calc( 100% - 10px );
-    height:calc( 72% - 5px );
+    height:calc( 42% - 5px );
+}
+.tools-updateArgument{
+    margin:5px;
+    margin-top: 0;
+    width:calc( 100% - 10px );
+    height:calc( 30% - 5px );
+    overflow: auto;
 }
 .tools-fragmentDiff{
     margin:5px;
@@ -50,6 +57,7 @@
     overflow: auto;
 }
 
+.tools-updateArgument,
 .tools-actionList,
 .tools-fragmentDiff,
 .tools-stateTree,
