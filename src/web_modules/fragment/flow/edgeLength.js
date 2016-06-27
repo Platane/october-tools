@@ -8,16 +8,11 @@ const d = ( a, b ) => {
 
 
 export const edgeLength = ( graph ) =>
-    graph.edges.map( edges =>
-        edges.map( x =>
-            ({
-                b       : x.b,
-                length  : x.points.reduce( (sum, p,i,arr) =>
-                    i==0
-                        ? sum
-                        : sum + d( p, arr[i-1] )
-                ,0)
-            })
-        )
+    graph.edges.map( x =>
+        x.points.reduce( (sum, p,i,arr) =>
+            i==0
+                ? sum
+                : sum + d( p, arr[i-1] )
+        ,0)
     )
 edgeLength.dependencies = [ graph ]

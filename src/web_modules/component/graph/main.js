@@ -4,6 +4,7 @@ import {connect}    from 'component/abstract/connect'
 export default connect(
 
     root => [
+        root.node.list,
         root.drawableGraph.graph,
         root.nodeSelected.id,
         root.drawableGraph.viewport.translate,
@@ -11,7 +12,7 @@ export default connect(
     ]
     ,
 
-    ( graph, selected, translate, scale ) => {
+    ( nodeList, graph, selected, translate, scale ) => {
 
         const proj = k =>
             ({
@@ -21,10 +22,10 @@ export default connect(
             })
 
         return ({
-            nodes   : graph.vertices.map( proj ),
-            arcs    : [].concat( ...graph.edges.map( x => x.map( x => x.points.map( proj ) ) ) ),
-            viewport_translate: translate,
-            viewport_scale: scale,
+            nodes   : graph.vertices.map( (p,i) => ({ ...proj( p ), name:nodeList[i].id  }) ),
+            arcs    : graph.edges.map( x => x.points.map( proj ) ),
+            viewport_translate  : translate,
+            viewport_scale      : scale,
             selected
         })
     }

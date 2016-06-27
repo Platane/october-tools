@@ -18,7 +18,8 @@ const scale_level = [
     1,
     1.32,
     2,
-    4,
+    5,
+    10,
 ]
 export const zoomLevel = ( action, zoomLevel ) => {
 
