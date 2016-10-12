@@ -8,12 +8,13 @@ import treeState            from './treeState'
 
 module.exports = connect(
 
-    root => [ root.core.nestedState, root.core.stepSelected.state ],
+    root => [ root.core.nestedState, root.core.stepSelected.state, root.core.fragmentSelected.name ],
 
-    ( nestedState, state ) => ({
-        value       : state && state.current,
-        outdated    : state && state.outdated,
-        tree        : nestedState,
+    ( nestedState, state, fragmentSelectedName ) => ({
+        value                   : state && state.current,
+        outdated                : state && state.outdated,
+        tree                    : nestedState,
+        fragmentSelectedName    : fragmentSelectedName,
     }),
 
     {

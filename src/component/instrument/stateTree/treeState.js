@@ -5,7 +5,7 @@ module.exports = Tree => {
 
         constructor(){
             super()
-            this.state = {}
+            this.state = { opened: {} }
 
             this.methods = {
                 open    : this.open.bind( this ),
@@ -14,17 +14,17 @@ module.exports = Tree => {
         }
 
         open( path ){
-            this.setState({ ...this.state, path:true })
+            this.setState({ opened:{ ...this.state.opened, [ path ]:true } })
         }
 
         close( path ){
-            const state = { ...this.state }
-            delete state[ path ]
-            this.setState( state )
+            const opened = { ...this.state.opened }
+            delete opened[ path ]
+            this.setState({ opened })
         }
 
         render(){
-            return <Tree { ...this.props } { ...this.methods } opened={ this.state } />
+            return <Tree { ...this.props } { ...this.methods } opened={ this.state.opened } />
         }
     }
 

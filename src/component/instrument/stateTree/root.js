@@ -9,7 +9,7 @@ const Root = props =>
         { !!props.tree && typeof props.tree == 'object' &&
             Object.keys( props.tree )
                 .map( name =>
-                    <Tree { ...props } key={name} tree={ props.tree[name] } name={name} path={ [ name ] } />
+                    <Tree { ...props } key={name} tree={ props.tree[name] } name={name} path={ name } />
                 )
         }
     </div>

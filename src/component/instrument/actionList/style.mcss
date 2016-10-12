@@ -24,7 +24,7 @@
     height: 7px;
     border-radius: 50%;
     margin: 0 8px;
-    transition: transform 280ms ease;
+    transition: transform 120ms ease;
 }
 .ballSelected{
     transform: scale(1.6);

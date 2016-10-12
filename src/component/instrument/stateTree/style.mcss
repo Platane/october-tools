@@ -1,6 +1,12 @@
 .node{
 
 }
+.name{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+}
 .leaf{
     display: flex;
     flex-direction: row;
@@ -9,6 +15,34 @@
     margin-left: 20px;
 }
 .value{
-    margin-left:auto;
-    color: rgb(203, 148, 25);
+    margin-left: auto;
+    user-select: text;
+}
+.leaft .label{
+    font-weight: bold;
+}
+
+.ticLeafSelected,
+.ticLeaf{
+    width: 20px;
+    text-align: center;
+    color: #ddd;
+    transition: transform 120ms ease,
+                color 120ms ease;
+}
+.ticLeafSelected{
+    transform: scale(1.4);
+    color: #d5a220;
+}
+
+
+.ticNodeClose,
+.ticNodeOpen{
+    width: 20px;
+    text-align: center;
+    color: #ddd;
+    transition: transform 120ms ease;
+}
+.ticNodeClose{
+    transform: rotate(-90deg);
 }
