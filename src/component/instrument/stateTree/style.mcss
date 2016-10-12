@@ -1,0 +1,14 @@
+.node{
+
+}
+.leaf{
+    display: flex;
+    flex-direction: row;
+}
+.children{
+    margin-left: 20px;
+}
+.value{
+    margin-left:auto;
+    color: rgb(203, 148, 25);
+}

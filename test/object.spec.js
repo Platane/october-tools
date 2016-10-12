@@ -1,5 +1,5 @@
 import expect           from 'expect'
-import * as o           from '../src/web_modules/utils/object'
+import * as o           from 'utils/object'
 
 
 describe('object utils', () => {

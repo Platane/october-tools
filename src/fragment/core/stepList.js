@@ -1,5 +1,13 @@
 const stepList = ( action, list ) =>
-    [ action.payload, ...list ]
+    [
+        {
+            id      : action.payload.id,
+            date    : action.payload.date,
+            action  : action.payload.action,
+            state   : { ...action.payload.state },
+        },
+        ...list
+    ]
 
 stepList.actions      = ['catchAction']
 stepList.initValue    = []

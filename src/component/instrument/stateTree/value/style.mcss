@@ -1,0 +1,15 @@
+.null{
+    color: #122480;
+}
+.number{
+    color: #1c80a4;
+}
+.string{
+    color: #b9740c;
+}
+.object{
+    color: #122480;
+}
+.bool{
+    color: #122480;
+}

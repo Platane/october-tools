@@ -19,6 +19,8 @@ module.exports = ( store ) => {
         })
     )
 
+    window.devStore = devToolStore
+
     return () =>
         <Contextify store={devToolStore}><App /></Contextify>
 }
