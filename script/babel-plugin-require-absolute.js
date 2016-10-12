@@ -1,8 +1,8 @@
-var fs = require('fs')
-var pathUtils = require('path')
+const fs = require('fs')
+const pathUtils = require('path')
 
 
-var fileExist = function( path ){
+const fileExist = function( path ){
     try{
         fs.accessSync( path )
         return true
@@ -11,43 +11,97 @@ var fileExist = function( path ){
     }
 }
 
-var moduleExist = function( path ){
+const moduleExist = function( path ){
     return path.slice(-3) != '.js'
         ? fileExist( path+'.js' ) || fileExist( path+'/index.js' )
         : fileExist( path )
 }
 
-module.exports = function () {
+/**
+ *
+ * @param cwd               {string}       path from where the command is called
+ * @param moduleDirectory   {[]string}     list of path from where to check for modules ( relative to cwd )
+ * @param src               {string}       the source as specified by the require
+ * @param filename          {string}       the filename ( with path ) from where the require is
+ *
+ * @return {string} the path to the module found, relative to the path of the current file
+ *                  or src if nothing is found
+ */
+const getRelativePath = function( cwd, moduleDirectory, src, filename ){
 
-    var cwd = process.cwd()
+    src = src.trim()
+
+    // ignore this cases
+    if ( !src || src[0] == '.' || src[0] == '/' )
+        return src
+
+    // the directory of the current file in absolute ( from where to write the relative path )
+    const fromDirectory = pathUtils.resolve( cwd, pathUtils.dirname( filename ) )
+
+    moduleDirectory = moduleDirectory || [ 'web_modules']
+
+    // test the existence of the file in each rootDirectory
+    // if it exist in two directories, the first in the list have the priority
+    for( var i=moduleDirectory.length; i--; ) {
+
+        var k   = 0
+        var ex
+        var absolute = ''
+
+        while( ex != absolute ) {
+
+            ex = absolute
+            absolute = pathUtils.join( fromDirectory, '../'.repeat( k ), moduleDirectory[i], src )
+
+            k++
+
+            if ( ex == absolute )
+                break
+
+            else if ( moduleExist( absolute ) )
+                return './'+pathUtils.relative( fromDirectory, absolute )
+
+        }
+    }
+
+    return src
+}
+
+module.exports = function ( a ) {
+
+    const cwd = process.cwd()
 
     return {
         visitor:{
+            CallExpression: function( path, parent ){
 
-            ImportDeclaration: function(path, parent) {
+                if ( path.node.callee.name == 'require' ) {
+                    const arg = path.node.arguments[ 0 ]
 
-                var src = path.node.source.value.trim()
+                    arg.value = getRelativePath(
+                        cwd,
+                        parent.opts && parent.opts.moduleDirectory,
 
-                if ( src[0] == '.' || src[0] == '/' )
-                    return
+                        arg.value,
 
-                // the directory of the current file ( from where to write the relative path )
-                var fromDirectory = pathUtils.join( cwd, pathUtils.dirname( parent.file.opts.filename ) )
-
-                // directories that may contain the file
-                // ( read from the options, default is 'web_modules' )
-                var rootDirectories = parent.opts && parent.opts.rootDirectories || [ 'web_modules' ]
-
-                // test the existence of the file in each rootDirectory
-                // if it exist in two directories, the first in the list have the priority
-                for( var i=rootDirectories.length; i--; ) {
-
-                    var absolute = pathUtils.join( cwd, rootDirectories[i], src )
-
-                    if ( moduleExist( absolute ) )
-                        path.node.source.value = './'+pathUtils.relative( fromDirectory, absolute )
-
+                        // /!\ sometimes the filename is absolute, sometimes not, I can't figure out why
+                        parent.file.opts.filename
+                    )
                 }
+            },
+
+            ImportDeclaration: function( path, parent ) {
+
+                path.node.source.value = getRelativePath(
+                    cwd,
+                    parent.opts && parent.opts.moduleDirectory,
+
+                    path.node.source.value,
+
+                    // /!\ sometimes the filename is absolute, sometimes not, I can't figure out why
+                    parent.file.opts.filename
+                )
+
             }
         }
     }

@@ -1,6 +1,6 @@
 import React, {PropTypes, Component} from 'react'
 import Todo from './todo'
-import DevTools from '../../../lib/index'
+import createDevTools from '../../../src/index'
 
 class App extends Component {
 
@@ -8,7 +8,6 @@ class App extends Component {
         dispatch        : PropTypes.func.isRequired,
         register        : PropTypes.func.isRequired,
         getValue        : PropTypes.func.isRequired,
-        list            : PropTypes.func.isRequired,
     };
 
     getChildContext() {
@@ -16,16 +15,18 @@ class App extends Component {
             dispatch        : this.props.dispatch,
             register        : this.props.register,
             getValue        : this.props.getValue,
-            list            : this.props.list,
         }
     }
 
     render() {
+
+        const DevTools = createDevTools( this.props )
+
         return (
             <div style={{ display:'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                 <Todo />
                 <div style={{ width: '160%'}} >
-                    <DevTools {...this.props} />
+                    <DevTools />
                 </div>
             </div>
         )

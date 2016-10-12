@@ -31,6 +31,10 @@ var config = {
                 loader: 'style!css'
             },
 
+            {
+                test: /\.mcss$/,
+                loader: 'style!css?modules&importLoaders=1&localIdentName=[hash:base64:6]'
+            },
         ]
     },
 }
