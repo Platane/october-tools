@@ -1,5 +1,4 @@
 .node{
-
 }
 .name{
     display: flex;
@@ -10,9 +9,6 @@
 .leaf{
     display: flex;
     flex-direction: row;
-}
-.children{
-    margin-left: 20px;
 }
 .value{
     margin-left: auto;
@@ -33,16 +29,4 @@
 .ticLeafSelected{
     transform: scale(1.4);
     color: #d5a220;
-}
-
-
-.ticNodeClose,
-.ticNodeOpen{
-    width: 20px;
-    text-align: center;
-    color: #ddd;
-    transition: transform 120ms ease;
-}
-.ticNodeClose{
-    transform: rotate(-90deg);
 }

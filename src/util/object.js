@@ -37,34 +37,41 @@ export const flatten = (A, path=[]) =>
                 ({...o, ...flatten( A[key], [...path, key] ) })
             ,{})
 
-// { A.B: 17 } => { A:{ B: 17 } }
-export const nest = A => {
 
-    if ( !A || typeof A != 'object' )
-        // primitive
-        return A
+// {
+//  'a.b.c' : { value: 1 },
+//  'a.b.e' : 5,
+//  'a.d'   : { value: 2 },
+// }
+//     ||
+//     V
+//
+// {
+//    a : {
+//      b : {
+//         c : 'a.b.c',
+//         e : 'a.b.e',
+//      },
+//      d : 'a.d'
+//    }
+// }
 
-    const flat = flatten( A )
+export const nest = flat => {
+    const list  = Object.keys( flat ).sort()
+    const o     = {}
 
-    const keys = Object.keys( flat )
+    while ( list.length ) {
+        const path = list.shift()
+        const keys = path.split('.')
 
-    const res = {}
-
-    // merge the keys
-    while( keys.length ){
-        const key = keys.shift()
-        const path = key.split('.')
-
-        let x=res
-        while( path.length > 1 ){
-            const l=path.shift()
-            x = ( x[l] = x[l] || {} )
+        let u = o
+        while( keys.length ){
+            const key = keys.shift()
+            u = u[ key ] = u[ key ] || ( keys.length == 0 ? path : {} )
         }
-
-        x[ path[0] ] = flat[ key ]
     }
 
-    return res
+    return o
 }
 
 

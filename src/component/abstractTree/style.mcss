@@ -1,0 +1,27 @@
+.node{
+
+}
+.name{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+}
+.children{
+    margin-left: 20px;
+}
+.value{
+    margin-left: auto;
+    user-select: text;
+}
+
+.ticNodeClose,
+.ticNodeOpen{
+    width: 20px;
+    text-align: center;
+    color: #ddd;
+    transition: transform 120ms ease;
+}
+.ticNodeClose{
+    transform: rotate(-90deg);
+}

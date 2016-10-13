@@ -22,12 +22,20 @@ const Value = ({ value }) => {
             type    = 'bool'
             break
 
+        case 'function' :
+            literal = 'function'
+            type    = 'function'
+            break
+
         case 'object' :
             if ( !value ){
                 literal = 'null'
                 type    = 'null'
+            } else if ( Array.isArray( value ) ) {
+                literal = '[Array]'
+                type    = 'object'
             } else {
-                literal = '[object]'
+                literal = '[Object]'
                 type    = 'object'
             }
             break

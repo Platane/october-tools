@@ -13,3 +13,6 @@
 .bool{
     color: #122480;
 }
+.function{
+    color: #801240;
+}

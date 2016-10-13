@@ -1,0 +1,39 @@
+
+.name{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.leaf{
+    display: flex;
+    flex-direction: row;
+}
+.children{
+    margin-left: 20px;
+}
+.value{
+    margin-left: 5px;
+    user-select: text;
+}
+.label{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.labelSeparator{
+    margin-left: 3px;
+    margin-right: 3px;
+}
+.labelType{
+    font-style: italic;
+    font-size: 0.8em;
+    margin-left: 5px;
+    color: #aaa;
+}
+
+.ticLeaf{
+    font-size: 0.3em;
+    width: 20px;
+    text-align: center;
+    color: #ddd;
+}
