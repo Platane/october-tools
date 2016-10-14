@@ -9,14 +9,25 @@
 .leaf{
     display: flex;
     flex-direction: row;
+    position: relative;
 }
 .value{
     margin-left: auto;
     user-select: text;
 }
+.valueOpenable{
+    cursor: pointer;
+}
 .leaft .label{
     font-weight: bold;
 }
+.emptyValue{
+    font-style: italic;
+    font-size: 0.8em;
+    margin-left: 5px;
+    color: #aaa;
+}
+
 
 .ticLeafSelected,
 .ticLeaf{
@@ -29,4 +40,39 @@
 .ticLeafSelected{
     transform: scale(1.4);
     color: #d5a220;
+}
+
+
+.actionPopUp{
+    min-width: 180px;
+    background: #f8f8f8;
+    border-radius: 4px;
+    padding: 6px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    top: 22px;
+    right: 0;
+    z-index: 1;
+}
+.actionPopUp:before{
+    content: '';
+    width: 0px;
+    height: 0px;
+    border-bottom: solid 9px rgba(0, 0, 0, 0.3);
+    border-left: solid 9px transparent;
+    border-right: solid 9px transparent;
+    position: absolute;
+    top: -9px;
+    right: 13px;
+}
+.actionPopUp:after{
+    content: '';
+    width: 0px;
+    height: 0px;
+    border-bottom: solid 9px #f8f8f8;
+    border-left: solid 9px transparent;
+    border-right: solid 9px transparent;
+    position: absolute;
+    top: -8px;
+    right: 13px;
 }

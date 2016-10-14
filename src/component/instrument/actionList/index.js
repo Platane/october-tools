@@ -6,7 +6,11 @@ module.exports = connect(
 
     root => [ root.instrument.actionList.list, root.core.stepSelected.id ],
 
-    ( actionList, actionSelectedId ) => ({ actionList, actionSelectedId }),
+    ( actionList, actionSelectedId ) => ({
+        actionList,
+        actionSelectedId,
+        actionSelected : actionList.find( x => actionSelectedId == x.id ),
+    }),
 
     {
         selectAction: ( dispatch, actionId ) =>

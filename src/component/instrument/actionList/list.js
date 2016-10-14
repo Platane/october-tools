@@ -1,10 +1,11 @@
-import React    from 'react'
+import React        from 'react'
+import ObjectTree   from 'component/objectTree'
 
 import style    from './style.mcss'
 
 const ratio = 16
 
-const List = ({ actionList, actionSelectedId, selectAction }) =>
+const List = ({ actionList, actionSelected, actionSelectedId, selectAction }) =>
     <div className={ style.container } style={{ height: ( actionList.length == 0 ? 0 : actionList[ actionList.length-1 ].y+1 ) * ratio }}>
 
         <div className={ style.bar } />
@@ -22,6 +23,16 @@ const List = ({ actionList, actionSelectedId, selectAction }) =>
                 </div>
             )
         }
+
+        { actionSelected &&
+            <div
+                className={ style.actionPopUp }
+                style={{ transform:`translate3d(0,${Math.round(actionSelected.y*ratio)}px,0)` }}
+                >
+                <ObjectTree tree={ actionSelected.payload } />
+            </div>
+        }
+
     </div>
 
 module.exports = List
