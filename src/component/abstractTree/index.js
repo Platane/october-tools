@@ -46,7 +46,7 @@ module.exports= ( Leaf, NodeLabel ) => {
 
 
     Root.propTypes = {
-        tree    : PropTypes.object,
+        tree    : PropTypes.any,
         opened  : PropTypes.object.isRequired,
         open    : PropTypes.func.isRequired,
         close   : PropTypes.func.isRequired,

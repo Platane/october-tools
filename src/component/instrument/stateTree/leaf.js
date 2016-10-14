@@ -3,6 +3,17 @@ import ObjectTree   from 'component/objectTree'
 import Value        from 'component/value'
 
 import style        from './style.mcss'
+import treeStyle    from '../../abstractTree/style.mcss'
+
+const ignoreClick = event => {
+    let c = event.target
+    while ( c != event.currentTarget ){
+        if ( c.className == treeStyle.name )
+            return true
+        c = c.parentNode
+    }
+    return false
+}
 
 const Leaf = props => {
 
@@ -23,15 +34,18 @@ const Leaf = props => {
                 </div>
             }
             { openable && props.leafOpened[ props.path ] &&
-                <div className={ style.actionPopUp }>
+                <div
+                    className={ style.actionPopUp }
+                    onClick={ e => !ignoreClick( e ) && props.closeLeaf( props.path ) }
+                    >
 
                     { Object.keys(value).length > 0 && <ObjectTree tree={ value } /> }
 
                     { Object.keys(value).length == 0 &&
                         (
                             Array.isArray(value)
-                                ? <div className={ style.emptyValue }>{'[]'}</div>
-                                : <div className={ style.emptyValue }>{'{}'}</div>
+                                ? <div className={ style.emptyValue }>{'[ ]'}</div>
+                                : <div className={ style.emptyValue }>{'{ }'}</div>
                         )
                     }
 

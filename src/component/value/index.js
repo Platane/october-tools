@@ -32,10 +32,10 @@ const Value = ({ value }) => {
                 literal = 'null'
                 type    = 'null'
             } else if ( Array.isArray( value ) ) {
-                literal = '[Array]'
+                literal = `Array (${value.length})`
                 type    = 'object'
             } else {
-                literal = '[Object]'
+                literal = 'Object'
                 type    = 'object'
             }
             break
@@ -47,6 +47,7 @@ const Value = ({ value }) => {
 
         default :
             literal = value.toString()
+            type    = 'object'
     }
 
     return <div className={ style[type] } >{ literal }</div>
