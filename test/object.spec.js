@@ -1,80 +1,8 @@
 import expect           from 'expect'
-import * as o           from 'utils/object'
+import * as o           from 'util/object'
 
 
 describe('object utils', () => {
-
-    describe('flatten', () =>{
-
-        it('with null', () =>{
-            expect( o.flatten( null ) ).toEqual( null )
-        })
-        it('with primitive', () =>{
-            expect( o.flatten( 17 ) ).toEqual( 17 )
-        })
-        it('with object', () =>{
-            expect( o.flatten( { A:{ B: 17 } } ) ).toEqual( { 'A.B':17 } )
-        })
-        it('with array', () =>{
-            expect( o.flatten( [[[17]]] ) ).toEqual( { '0.0.0':17 } )
-        })
-        it('with null nested inside object', () =>{
-            expect( o.flatten( { A:{ B: { C: null, D:13 } } } ) ).toEqual( { 'A.B.C':null, 'A.B.D':13 } )
-        })
-
-    })
-
-    describe('shortenPath', () =>{
-
-        it('with null', () =>{
-            expect( o.shortenPath( null ) ).toEqual( null )
-        })
-        it('with primitive', () =>{
-            expect( o.shortenPath( 17 ) ).toEqual( 17 )
-        })
-        it('with object', () =>{
-            expect( o.shortenPath( { A:{ B: 17 } } ) ).toEqual( { 'A.B':17 } )
-        })
-        it('with array', () =>{
-            expect( o.shortenPath( [[[17]]] ) ).toEqual( { '0.0.0':17 } )
-        })
-        it('with null nested inside object', () =>{
-            expect( o.shortenPath( { A:{ B: null } } ) ).toEqual( { 'A.B':null } )
-        })
-        it('with deep nested object', () =>{
-            expect( o.shortenPath( { A:{ B: { C: { D: 5 } } } } ) ).toEqual( { 'A.B.C.D':5 } )
-        })
-        it('with complex object 3', () =>{
-            expect( o.shortenPath( { A:{ B: 13, U: 24 } } ) ).toEqual( { A:{ B:13, U:24 } } )
-        })
-        it('with complex object', () =>{
-            expect( o.shortenPath( { A:{ B: { C: 17 }, U: 24 } } ) ).toEqual( { A:{ 'B.C':17, U:24 } } )
-        })
-        it('with complex object 2', () =>{
-            const A = {
-                a : {
-                    b: {
-                        c:{
-                            d: 5
-                        }
-                    },
-                    u: {
-                        z: 7
-                    }
-                },
-                g:3
-            }
-            const B = {
-                a:{
-                    'b.c.d':5,
-                    'u.z':7,
-                },
-                g:3,
-            }
-            expect( o.shortenPath( A ) ).toEqual( B )
-        })
-
-    })
 
     describe('nest', () =>{
 
@@ -109,22 +37,6 @@ describe('object utils', () => {
             expect( o.nest( { 'A':1, 'B':[] } ) ).toEqual( { A:1, B:[] } )
         })
 
-    })
-
-    describe('diff', () =>{
-
-        it('with null', () =>{
-            expect( o.diff( null, null ) ).toEqual( null )
-        })
-        it('primitive change', () =>{
-            expect( o.diff( null, 1 ) ).toEqual({ before:null, after:1 })
-        })
-        it('object did not change', () => {
-            expect( o.diff( {a:1}, {a:1} ) ).toEqual( null )
-        })
-        it('object change', () => {
-            expect( o.diff( {a:1}, {a:2} ) ).toEqual( {a:{ before:1, after:2 }} )
-        })
     })
 
 })
