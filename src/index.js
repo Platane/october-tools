@@ -19,6 +19,11 @@ module.exports = ( store ) => {
         })
     )
 
+    devToolStore.dispatch({
+        type    : 'core:fragment:init',
+        payload : { fragments : store._getFragments() }
+    })
+
     window.devStore = devToolStore
 
     return () =>

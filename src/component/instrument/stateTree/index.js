@@ -10,7 +10,7 @@ import tree                 from 'component/abstractTree'
 
 module.exports = connect(
 
-    root => [ root.core.nestedState, root.core.stepSelected.state, root.core.fragmentSelected.name ],
+    root => [ root.core.fragments.tree, root.core.stepSelected.state, root.core.fragmentSelected.name ],
 
     ( nestedState, state, fragmentSelectedName ) => ({
         values                  : state && state.current,
