@@ -38,7 +38,7 @@
 
 .actionPopUp{
     min-width: 180px;
-    background: #f8f8f8;
+    background: rgba(248, 248, 248, 0.96);
     border-radius: 4px;
     padding: 10px 16px 10px 4px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
