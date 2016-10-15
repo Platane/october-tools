@@ -16,9 +16,6 @@
     top:0;
     left:0;
 }
-.name{
-    cursor: pointer;
-}
 .flowWrapper{
     min-width: 60px;
     display: flex;

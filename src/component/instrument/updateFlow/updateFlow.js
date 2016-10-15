@@ -1,5 +1,6 @@
-import React        from 'react'
-import style        from './style.mcss'
+import React            from 'react'
+import style            from './style.mcss'
+import stateTreeStyle   from '../stateTree/style.mcss'
 
 const bridgeWidth  = 10
 const height       = 50
@@ -34,7 +35,7 @@ const bridgePath = ( bridge ) => {
 
                     'M', 0                       , (y+1)*height     + column*lineWidth,
                     'L', 5/1.5                   , (y+1)*height     + column*lineWidth + 1.5/1.5,
-                    
+
                     'M', 0                       , (y+1)*height     + column*lineWidth,
                     'L', 2.5/1.5                 , (y+1)*height     + column*lineWidth - 5/1.5,
                 ]
@@ -74,8 +75,11 @@ const UpdateFlow = props =>
                 <div className={ style.list }>
                     { props.list
                         .map( (name, i) =>
-                            <div key={name} className={ style.item } style={{ transform: `translate3d(0,${ (i+1)*height - 6 }px,0)` }} >
-                                <div className={ style.name } onClick={ () => props.selectFragment( name ) }>{ name }</div>
+                            <div key={name} className={ style.item } style={{ transform: `translate3d(-5px,${ (i+1)*height - 6 }px,0)` }} >
+                                <div className={ stateTreeStyle.name } onClick={ () => props.selectFragment( name ) }>
+                                    <div className={ name == props.fragmentSelectedName ? stateTreeStyle.ticLeafSelected : stateTreeStyle.ticLeaf } >●</div>
+                                    <div className={ stateTreeStyle.label }>{ name }</div>
+                                </div>
                             </div>
                         )
                     }

@@ -16,10 +16,6 @@ const App = () =>
                 <StateTree />
             </div>
 
-            <div className={ style.graph }>
-                <Graph />
-            </div>
-
             <div className={ style.updateFlow }>
                 <UpdateFlow />
             </div>

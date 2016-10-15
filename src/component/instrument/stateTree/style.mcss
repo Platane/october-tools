@@ -24,7 +24,7 @@
 
 .ticLeafSelected,
 .ticLeaf{
-    width: 20px;
+    width: 18px;
     text-align: center;
     color: #ddd;
     transition: transform 120ms ease,
