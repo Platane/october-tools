@@ -1,0 +1,28 @@
+.container{
+    display:flex;
+    flex-direction: row;
+}
+.bridge{
+    stroke-width: 1px;
+    fill: none;
+    stroke-linecap:round;
+    /*stroke-linejoin:round;*/
+}
+.list{
+    position: relative;
+}
+.item{
+    position: absolute;
+    top:0;
+    left:0;
+}
+.name{
+    cursor: pointer;
+}
+.flowWrapper{
+    min-width: 60px;
+    display: flex;
+}
+.flow{
+    margin-left: auto;
+}

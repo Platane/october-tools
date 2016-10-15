@@ -3,6 +3,7 @@ import React    from 'react'
 import ActionList   from 'component/instrument/actionList'
 import StateTree    from 'component/instrument/stateTree'
 import Graph        from 'component/instrument/graph'
+import UpdateFlow   from 'component/instrument/updateFlow'
 
 import style        from './style.mcss'
 
@@ -17,6 +18,10 @@ const App = () =>
 
             <div className={ style.graph }>
                 <Graph />
+            </div>
+
+            <div className={ style.updateFlow }>
+                <UpdateFlow />
             </div>
 
         </div>

@@ -4,8 +4,8 @@ export const selectStep = ( stepId ) =>
         payload : { stepId },
     })
 
-export const selectFragment = ( fragmentName ) =>
+export const selectFragment = ( fragmentName, from ) =>
     ({
         type    : 'core:fragment:select',
-        payload : { fragmentName },
+        payload : { fragmentName, from },
     })

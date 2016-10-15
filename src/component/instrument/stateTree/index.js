@@ -21,7 +21,7 @@ module.exports = connect(
 
     {
         selectFragment: ( dispatch, fragmentName ) =>
-            dispatch( action.selectFragment( fragmentName ))
+            dispatch( action.selectFragment( fragmentName, 'stateTree' ))
     },
 
     state( treeState( tree( Leaf ) ) )

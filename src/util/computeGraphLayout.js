@@ -20,8 +20,8 @@ const toJSONKGraph = ( graph ) => {
             graph[ nameA ].forEach( nameB =>
                 edges.push({
                     id      : nameA+'-'+nameB,
-                    source  : nameA,
-                    target  : nameB,
+                    source  : nameB,
+                    target  : nameA,
                 })
             )
         )
