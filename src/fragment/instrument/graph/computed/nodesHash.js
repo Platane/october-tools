@@ -2,7 +2,7 @@ import nodes            from '../nodes'
 import graph            from 'fragment/core/fragments/by_name'
 
 const nodesHash = ( graph, nodes ) =>
-    Object.keys( nodes )
+    nodes && Object.keys( nodes )
         .map( name => graph[ name ].index )
         .sort()
         .join('|')

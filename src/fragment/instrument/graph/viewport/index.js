@@ -1,3 +1,4 @@
 module.exports = {
-    list        : require('./list'),
+    zoom        : require('./zoom'),
+    origin      : require('./origin'),
 }

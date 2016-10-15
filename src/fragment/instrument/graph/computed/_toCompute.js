@@ -14,7 +14,7 @@ const pruneGraph = ( graph, nodes ) => {
 }
 
 const _toCompute = ( graph, nodesHash, nodes, cache ) =>
-    cache[ nodesHash ]
+    !nodesHash || cache[ nodesHash ]
         ? []
         : [{
             nodesHash,
