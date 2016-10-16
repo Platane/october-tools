@@ -15,6 +15,9 @@
 .flow{
     margin-left: auto;
 }
+.right{
+    flex-grow: 1;
+}
 
 .activeList{
     position: relative;
@@ -24,11 +27,23 @@
     top:0;
     left:0;
 }
-
+.passive{
+    display: flex;
+    flex-direction: column;
+}
+.passiveLabel{
+    font-style: italic;
+    font-size: 0.8em;
+    color: #aaa;
+}
 .passiveList{
     display: flex;
     flex-direction: column;
 }
 .passiveItem{
-
+    display: flex;
+    flex-direction: row;
+}
+.outdated{
+    margin-left: auto;
 }

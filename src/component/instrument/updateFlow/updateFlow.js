@@ -87,7 +87,7 @@ const UpdateFlow = props =>
 
             { Object.keys( props.outdated ).length > 0 &&
                 <div className={ style.passive }>
-                    <div className={ style.passiveLabel }>{'those will be lazy updated :'}</div>
+                    <div className={ style.passiveLabel }>{'also, those will be lazy updated :'}</div>
                     <div className={ style.passiveList }>
                         { Object.keys( props.outdated )
                             .map( (name, i) =>
@@ -96,6 +96,7 @@ const UpdateFlow = props =>
                                         <div className={ name == props.fragmentSelectedName ? stateTreeStyle.ticLeafSelected : stateTreeStyle.ticLeaf } >●</div>
                                         <div className={ stateTreeStyle.label }>{ name }</div>
                                     </div>
+                                    <div className={ style.outdated } title="update blocked by lazy computation" >❄</div>
                                 </div>
                             )
                         }
