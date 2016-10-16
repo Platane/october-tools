@@ -8,18 +8,27 @@
     stroke-linecap:round;
     /*stroke-linejoin:round;*/
 }
-.list{
-    position: relative;
-}
-.item{
-    position: absolute;
-    top:0;
-    left:0;
-}
 .flowWrapper{
     min-width: 60px;
     display: flex;
 }
 .flow{
     margin-left: auto;
+}
+
+.activeList{
+    position: relative;
+}
+.activeItem{
+    position: absolute;
+    top:0;
+    left:0;
+}
+
+.passiveList{
+    display: flex;
+    flex-direction: column;
+}
+.passiveItem{
+
 }

@@ -3,4 +3,5 @@ module.exports = {
     action      : require('./action'),
     state       : require('./state'),
     changed     : require('./changed'),
+    outdated    : require('./outdated'),
 }

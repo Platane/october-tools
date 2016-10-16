@@ -10,6 +10,7 @@
     display: flex;
     flex-direction: row;
     position: relative;
+    align-items: center;
 }
 .value{
     margin-left: auto;
@@ -20,6 +21,11 @@
 }
 .leaft .label{
     font-weight: bold;
+}
+
+.outdated{
+    height: 10px;
+    line-height: 10px;
 }
 
 .ticLeafSelected,

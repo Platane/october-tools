@@ -1,5 +1,5 @@
 import {connect}            from 'component/abstract/connect'
-import UpdateFlow           from './updateFlow'
+import UpdateFlow           from './main'
 import * as action          from 'action'
 
 const last = arr => arr[ arr.length-1 ]
@@ -34,7 +34,7 @@ const compute = ( fragments_by_name, changed, action ) => {
         )
     )
 
-    const free_column = [ last( bridges[0].to ) ]
+    const free_column = [ last( bridges[0].to ) || 0 ]
     list.forEach( name => {
 
         if ( !next[ name ] )
@@ -76,10 +76,12 @@ module.exports = connect(
         root.core.fragmentSelected.name,
         root.core.stepSelected.changed.by_name,
         root.core.stepSelected.action,
+        root.core.stepSelected.outdated,
     ],
 
-    ( fragments_by_name, fragmentSelectedName, changed, action ) => ({
+    ( fragments_by_name, fragmentSelectedName, changed, action, outdated ) => ({
         action,
+        outdated,
         fragmentSelectedName,
         ...(
             action

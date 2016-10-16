@@ -30,6 +30,7 @@
     transform: scale(1.6);
 }
 .actionPopUp{
+    min-height: 10px;
     transition: transform 120ms ease;
     background: #f8f8f8;
     border-radius: 4px;

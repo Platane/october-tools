@@ -44,7 +44,7 @@ module.exports = ( store ) => {
     store._registerHook( ( action, state ) =>
         devToolStore.dispatch({
             type    : 'catchAction',
-            payload : { action, state, id:i++, date:Date.now() }
+            payload : { action, state:{ ...state }, id:i++, date:Date.now() }
         })
     )
 

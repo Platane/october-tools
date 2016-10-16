@@ -47,45 +47,65 @@ const bridgePath = ( bridge ) => {
 const color = i => `hsl(${ i * 137 },80%,60%)`
 
 const UpdateFlow = props =>
-    !props.bridges
-        ? null
-        : (
-            <div className={ style.container }>
-                <div className={ style.flowWrapper }>
-                    <svg
-                        className={ style.flow }
-                        height={ (props.list.length+1) * height + 20 }
-                        width={ bridgeWidth * props.max_concurency + 10 }
-                        >
-                        <g transform={`translate(${ bridgeWidth * props.max_concurency +5 },0) scale(-1,1)`}>
-                            {
-                                props.bridges.map( (bridge, i) =>
-                                    <path
-                                        key={i}
-                                        className={ style.bridge }
-                                        d={ bridgePath( bridge ) }
-                                        stroke={ color( i ) }
-                                        />
-                                )
-                            }
-                        </g>
-                    </svg>
-                </div>
-
-                <div className={ style.list }>
-                    { props.list
-                        .map( (name, i) =>
-                            <div key={name} className={ style.item } style={{ transform: `translate3d(-5px,${ (i+1)*height - 6 }px,0)` }} >
-                                <div className={ stateTreeStyle.name } onClick={ () => props.selectFragment( name ) }>
-                                    <div className={ name == props.fragmentSelectedName ? stateTreeStyle.ticLeafSelected : stateTreeStyle.ticLeaf } >●</div>
-                                    <div className={ stateTreeStyle.label }>{ name }</div>
-                                </div>
-                            </div>
+(
+    <div className={ style.container }>
+        <div className={ style.flowWrapper }>
+            <svg
+                className={ style.flow }
+                height={ (props.list.length+1) * height }
+                width={ bridgeWidth * props.max_concurency + 10 }
+                >
+                <g transform={`translate(${ bridgeWidth * props.max_concurency +5 },0) scale(-1,1)`}>
+                    {
+                        props.bridges.map( (bridge, i) =>
+                            <path
+                                key={i}
+                                className={ style.bridge }
+                                d={ bridgePath( bridge ) }
+                                stroke={ color( i ) }
+                                />
                         )
                     }
-                </div>
+                </g>
+            </svg>
+        </div>
+
+        <div className={ style.right }>
+
+            <div className={ style.activeList } style={{ height: (props.list.length+1) * height }} >
+                { props.list
+                    .map( (name, i) =>
+                        <div key={name} className={ style.activeItem } style={{ transform: `translate3d(-5px,${ (i+1)*height - 6 }px,0)` }} >
+                            <div className={ stateTreeStyle.name } onClick={ () => props.selectFragment( name ) }>
+                                <div className={ name == props.fragmentSelectedName ? stateTreeStyle.ticLeafSelected : stateTreeStyle.ticLeaf } >●</div>
+                                <div className={ stateTreeStyle.label }>{ name }</div>
+                            </div>
+                        </div>
+                    )
+                }
             </div>
-        )
+
+            { Object.keys( props.outdated ).length > 0 &&
+                <div className={ style.passive }>
+                    <div className={ style.passiveLabel }>{'those will be lazy updated :'}</div>
+                    <div className={ style.passiveList }>
+                        { Object.keys( props.outdated )
+                            .map( (name, i) =>
+                                <div key={name} className={ style.passiveItem } >
+                                    <div className={ stateTreeStyle.name } onClick={ () => props.selectFragment( name ) }>
+                                        <div className={ name == props.fragmentSelectedName ? stateTreeStyle.ticLeafSelected : stateTreeStyle.ticLeaf } >●</div>
+                                        <div className={ stateTreeStyle.label }>{ name }</div>
+                                    </div>
+                                </div>
+                            )
+                        }
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+)
 
 
 module.exports = UpdateFlow

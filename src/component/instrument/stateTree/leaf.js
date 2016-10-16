@@ -22,7 +22,11 @@ const Leaf = props => {
                 <div
                     className={ style.value + ' ' + ( openable ? style.valueOpenable : '' )  }
                     onClick={ openable && ( () => props.leafOpened[ props.path ] ? props.closeLeaf( props.path ) : props.openLeaf( props.path ) ) }>
-                    <Value value={ value } />
+                    {
+                        props.outdated[ props.path ]
+                            ? <div className={ style.outdated } title="update blocked by lazy computation" >❄</div>
+                            : <Value value={ value } />
+                    }
                 </div>
             }
             { openable && props.leafOpened[ props.path ] &&

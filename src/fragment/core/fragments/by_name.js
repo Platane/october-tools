@@ -6,6 +6,7 @@ const by_name = action => {
                 name            : x.name,
                 index           : x.index,
                 dependencies    : x.dependencies.slice(),
+                nexts           : x.nexts.slice(),
                 stateless       : x.stateless,
                 allActions      : x.allActions,
                 actions         : x.actions.slice(),
