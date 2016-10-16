@@ -16,10 +16,11 @@ const App = () =>
                 <StateTree />
             </div>
 
-            <div className={ style.updateFlow }>
-                <UpdateFlow />
-            </div>
 
+        </div>
+
+        <div className={ style.updateFlow }>
+            <UpdateFlow />
         </div>
 
         <div className={ style.actionList }>

@@ -9,7 +9,7 @@
     /*stroke-linejoin:round;*/
 }
 .flowWrapper{
-    min-width: 60px;
+    min-width: 40px;
     display: flex;
 }
 .flow{

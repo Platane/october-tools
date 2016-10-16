@@ -8,13 +8,22 @@
 }
 
 .actionList{
-    margin: 10px;
+    margin: 5px;
     padding: 10px;
-    width: calc( 40% - 21px );
+    width: calc( 30% - 11px );
     border-left: solid 1px #ddd;
+    overflow-x: auto;
 }
 .main{
-    margin: 10px;
+    margin: 5px;
     padding: 10px;
-    width: calc( 60% - 20px );
+    width: calc( 35% - 10px );
+    overflow-x: auto;
+}
+.updateFlow{
+    margin: 5px;
+    padding: 10px;
+    width: calc( 35% - 11px );
+    border-left: solid 1px #ddd;
+    overflow-x: auto;
 }
