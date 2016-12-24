@@ -8,3 +8,4 @@ export const filteredList = ( list, filter ) =>
         : list.filter( todo => todo.finished == ( filter == 'finished' )  )
 
 filteredList.dependencies = [ listWithFinishState, filter ]
+filteredList.stateless    = true

@@ -11,9 +11,9 @@ module.exports= ( Leaf, NodeLabel ) => {
     NodeLabel = NodeLabel || ( props => <div className={ style.label }>{ props.name }</div> )
 
     const Tree = props =>
-        typeof props.tree != 'object'
+        typeof props.tree != 'object' || !props.tree
             ?
-                <Leaf { ...props } value={ props.tree }  />
+                <Leaf { ...props } value={ props.tree } path={ props.path } />
             :
                 <div className={ style.node }>
 

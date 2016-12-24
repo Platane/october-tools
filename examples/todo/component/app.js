@@ -25,7 +25,7 @@ class App extends Component {
         return (
             <div style={{ display:'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                 <Todo />
-                <div style={{ width: '160%'}} >
+                <div style={{ width: '200%'}} >
                     <DevTools />
                 </div>
             </div>

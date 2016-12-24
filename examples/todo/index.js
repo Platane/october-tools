@@ -12,6 +12,7 @@ const pack = create( {todo} )
 
 ReactDOM.render( React.createElement( App, pack, null ), document.getElementById('app') )
 
+window.store = { ...pack, todo }
 
 pack.dispatch( action.addTodo('swagg') )
 pack.dispatch( action.addTodo('yolo') )
